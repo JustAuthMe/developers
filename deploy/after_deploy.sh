@@ -8,7 +8,7 @@ for HOST in "${HOSTS[@]}"; do
 done
 
 echo "Running migrations on last host :"
-echo "[$HOST] $ cd $ROOT_PATH && mv php artisan migrate"
-ssh -oStrictHostKeyChecking=no -i $PK_PATH root@$HOST "[$HOST] $ cd $ROOT_PATH && mv php artisan migrate"
+echo "[$HOST] $ cd $ROOT_PATH && php artisan migrate"
+ssh -oStrictHostKeyChecking=no -i $PK_PATH root@$HOST "cd $ROOT_PATH && php artisan migrate"
 
 rm $PK_PATH
