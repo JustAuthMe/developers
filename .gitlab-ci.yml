@@ -23,6 +23,8 @@ setup:staging:
     - tags
 
 deploy:staging:
+  before_script:
+    - chmod u+x ./deploy/*.sh
   stage: deploy_staging
   environment:
     name: staging
