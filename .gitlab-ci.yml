@@ -11,8 +11,8 @@ setup:staging:
   stage: setup_staging
   script:
     - rm .git -r
-    - cat $STAGING_ENVVARS > ./.env
     - composer install --no-dev
+    - cat $STAGING_ENVVARS > ./.env
     - touch build.tar.gz
     - tar --exclude=build.tar.gz -czvf build.tar.gz .
   artifacts:
