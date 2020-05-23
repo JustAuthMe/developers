@@ -1,0 +1,70 @@
+cache:
+  paths:
+    - vendor/
+stages:
+  - setup_staging
+  - deploy_staging
+  - setup_prod
+  - deploy_prod
+
+setup:staging:
+  stage: setup_staging
+  script:
+    - rm .git -r
+    - cat $STAGING_ENVVARS > ./.env
+    - composer install --no-dev
+    - touch build.tar.gz
+    - tar --exclude=build.tar.gz -czvf build.tar.gz .
+  artifacts:
+    paths:
+      - ./build.tar.gz
+    expire_in: 1 week
+  only:
+    - tags
+
+deploy:staging:
+  stage: deploy_staging
+  environment:
+    name: staging
+    url: http://dash.staging.justauthme.net/
+  variables:
+    DEPLOY_HOSTS: "$STAGING_HOSTS"
+    ROOT_PATH: "/var/www/$STAGING_ROOT_PATH"
+  script:
+    - PK_PATH="$STAGING_PK" ./deploy/deploy.sh
+    - PK_PATH="$STAGING_PK" ./deploy/after_deploy.sh
+  dependencies:
+    - setup:staging
+  only:
+    - tags
+
+.setup:prod:
+  stage: setup_prod
+  script:
+    - rm .git -r
+    - composer install --no-dev
+    - touch build.tar.gz
+    - tar --exclude=build.tar.gz -czvf build.tar.gz .
+  artifacts:
+    paths:
+      - ./build.tar.gz
+    expire_in: 1 week
+  only:
+    - tags
+
+.deploy:prod:
+  stage: deploy_prod
+  environment:
+    name: prod
+    url: https://core.justauth.me
+  variables:
+    DEPLOY_HOSTS: "$PROD_HOSTS"
+    ROOT_PATH: "/var/www/$PROD_ROOT_PATH"
+  script:
+    - PK_PATH="$PROD_PK" ./deploy/deploy.sh
+    - PK_PATH="$PROD_PK" ./deploy/after_deploy.sh
+  dependencies:
+    - setup:prod
+  when: manual
+  only:
+    - tags
