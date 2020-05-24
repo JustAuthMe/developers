@@ -44,8 +44,8 @@ class Init extends Migration
         });
         Schema::create('organization_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('organization_id')->unsigned()->index()->nullable()->default(null);
-            $table->bigInteger('user_id')->unsigned()->index()->nullable()->default(null);
+            $table->bigInteger('organization_id')->nullable()->default(null);
+            $table->bigInteger('user_id')->nullable()->default(null);
             $table->integer('role')->default(0)->unsigned();
             $table->foreign('organization_id')->references('id')->on('organizations')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
@@ -54,15 +54,15 @@ class Init extends Migration
             $table->id();
             $table->string('email');
             $table->integer('organization_id')->unsigned()->index();
-            $table->integer('role')->unsigned();
+            $table->integer('role');
             $table->timestamp('used_at')->nullable();
             $table->timestamps();
         });
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
             $table->integer('remote_resource_id');
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->bigInteger('organization_id')->unsigned()->index();
+            $table->bigInteger('user_id')->nullable()->default(null);
+            $table->bigInteger('organization_id')->nullable()->default(null);
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('organization_id')->references('id')->on('organizations')->cascadeOnDelete();
             $table->timestamps();
