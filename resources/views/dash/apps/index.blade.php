@@ -7,7 +7,7 @@
         <div class="card-body">
             <p>
                 <a href="{{ action('Dash\AppsController@create') }}" class="btn btn-primary">Créer une
-                    appliation</a>
+                    application</a>
             </p>
             <table class="table">
                 <thead>
