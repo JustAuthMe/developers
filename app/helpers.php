@@ -34,5 +34,5 @@ function search($array, $key, $value)
 }
 
 function get_jam_url(){
-    return 'https://core.justauth.me/auth?app_id=498a1e727b95f1f9e30f8c13cc452089&redirect_url=http://127.0.0.1:8000/dash/jam';
+    return 'https://core.justauth.me/auth?app_id='.env('JAM_APP_ID').'&redirect_url='.env('JAM_REDIRECT_URL');
 }
