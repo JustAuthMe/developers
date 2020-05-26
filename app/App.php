@@ -40,7 +40,10 @@ class App extends RemoteResource
             $res = json_decode($res->getBody()->getContents(), true);
             return new self($res['client_app']['id'], $res['client_app']['app_id'], $res['client_app']['domain'], $res['client_app']['name'], $res['client_app']['redirect_url'], $res['client_app']['data'], $res['client_app']['logo'], $res['client_app']['secret']);
         }
-        DB::table('apps')->where('remote_resource_id', $id)->delete();
+        if ($res->getStatusCode() == 404) {
+            DB::table('apps')->where('remote_resource_id', $id)->delete();
+        }
+
         return null;
     }
 
