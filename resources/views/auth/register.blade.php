@@ -64,5 +64,9 @@
             </form>
         </div>
     </div>
+    <div class="text-center mt-3">
+        <a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a>
+        <a href="{{ get_jam_url() }}" class="btn btn-primary">Connexion avec JustAuthMe</a>
+    </div>
 
 @endsection

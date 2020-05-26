@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dash') }}">
-            <div class="sidebar-brand-text mx-3">JAM</div>
+            <img src="{{ asset('img/logo_txt_white.png') }}" style="width: 80%">
         </a>
 
         <!-- Divider -->

@@ -16,6 +16,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         html {
             height: 100%;
@@ -47,6 +48,9 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-8">
+            <div class="text-center mb-5">
+                <img src="{{ asset('img/logo_txt.png') }}" width="400px" alt="">
+            </div>
             @include('alerts.error')
             @include('alerts.success')
 
