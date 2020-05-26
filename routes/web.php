@@ -10,6 +10,7 @@ Route::group(['prefix' => 'dash'], function () {
     Auth::routes();
     Route::get('jam', 'Auth\JamController@auth');
     Route::get('', 'Dash\HomeController@index');
+    Route::get('doc', 'Dash\HomeController@doc');
     Route::group(['prefix' => 'organizations'], function () {
         Route::get('', 'Dash\OrganizationsController@index');
         Route::get('create', 'Dash\OrganizationsController@create');
