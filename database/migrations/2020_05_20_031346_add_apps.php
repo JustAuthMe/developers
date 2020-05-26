@@ -15,7 +15,7 @@ class AddApps extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
-            $table->string('resource_location')->unique();
+            $table->integer('remote_resource_id')->unique();
             $table->bigInteger('user_id')->unsigned()->index()->nullable()->default(null);
             $table->bigInteger('organization_id')->unsigned()->index()->nullable()->default(null);
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
