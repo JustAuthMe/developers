@@ -122,6 +122,8 @@ class AppsController extends Controller
             $data_updated['name'] = $data['name'];
         }
 
+        $data_updated['dev'] = isset($data['dev']) && $data['dev'] == 1;
+
         if (isset($data['logo'])) {
             $logo = $data['logo'];
             $dataurl = 'data:image/' . pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($logo->getPathName()));

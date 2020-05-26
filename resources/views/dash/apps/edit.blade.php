@@ -72,7 +72,16 @@
                         {{ Form::label('redirect_url', 'URL de redirection') }}
                         {{ Form::text('redirect_url', $app->redirect_url, ['class' => 'form-control']) }}
                     </div>
-
+                    <div class="form-group">
+                        <div class="form-check">
+                            {{ Form::checkbox('dev', 1, $app->dev, ['class' => 'form-check-input', 'id' => 'devCheck']) }}
+                            <label class="form-check-label" for="devCheck">
+                                Mode développeur
+                            </label>
+                        </div>
+                        <small>Le mode développeur permet d'autoriser la redirection sur n'importe quelle adresse IP
+                            locale.</small>
+                    </div>
                     <label>Données</label>
                     <table class="table table-bordered">
                         <thead>

@@ -9,7 +9,7 @@ class App extends RemoteResource
     protected $base_uri;
     protected $default_resource = 'client_app';
 
-    protected $id, $app_id, $domain, $name, $redirect_url, $data, $logo, $secret;
+    protected $id, $app_id, $domain, $name, $redirect_url, $data, $logo, $secret, $dev;
 
     public static $data_available = [
         'firstname' => "Prénom",
@@ -18,7 +18,7 @@ class App extends RemoteResource
         'avatar' => "Photo de profil"
     ];
 
-    public function __construct($id = 0, $app_id = 0, $domain = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '')
+    public function __construct($id = 0, $app_id = 0, $domain = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '', $dev = false)
     {
         $this->base_uri = env('JAM_CORE');
         $this->setAuth(['access_token' => env('JAM_CORE_KEY')]);
@@ -31,6 +31,7 @@ class App extends RemoteResource
         $this->data = $data;
         $this->logo = $logo;
         $this->secret = $secret;
+        $this->dev = $dev;
     }
 
     public static function findOrFail($id)
@@ -38,7 +39,7 @@ class App extends RemoteResource
         $res = (new self())->get('client_app/' . $id);
         if ($res->getStatusCode() == 200) {
             $res = json_decode($res->getBody()->getContents(), true);
-            return new self($res['client_app']['id'], $res['client_app']['app_id'], $res['client_app']['domain'], $res['client_app']['name'], $res['client_app']['redirect_url'], $res['client_app']['data'], $res['client_app']['logo'], $res['client_app']['secret']);
+            return new self($res['client_app']['id'], $res['client_app']['app_id'], $res['client_app']['domain'], $res['client_app']['name'], $res['client_app']['redirect_url'], $res['client_app']['data'], $res['client_app']['logo'], $res['client_app']['secret'], $res['client_app']['dev']);
         }
         if ($res->getStatusCode() == 404) {
             DB::table('apps')->where('remote_resource_id', $id)->delete();
@@ -56,7 +57,7 @@ class App extends RemoteResource
             $res = json_decode($res->getBody()->getContents(), true);
             $apps = [];
             foreach ($res['client_apps'] as $client_app) {
-                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret']);
+                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret'], $res['client_app']['dev']);
             }
             return $apps;
         }
