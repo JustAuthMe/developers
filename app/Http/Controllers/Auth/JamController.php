@@ -19,7 +19,7 @@ class JamController extends Controller
     {
         $access_token = $request->get('access_token');
 
-        $jamSdk = new JamSdk('498a1e727b95f1f9e30f8c13cc452089', 'http://127.0.0.1:8000/dash/jam', 'iACb5KuuBrhgATIoUZTO6RwnPWJfpN');
+        $jamSdk = new JamSdk(env('JAM_APP_ID'), env('JAM_REDIRECT_URL'), env('JAM_SECRET_KEY'));
 
         try {
             $user_infos = $jamSdk->getUserInfos($_GET['access_token']);
