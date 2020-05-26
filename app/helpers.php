@@ -33,12 +33,19 @@ function search($array, $key, $value)
     return $results;
 }
 
-function get_jam_url($app_id = null, $redirect_url = null){
-    if(!$app_id){
+function get_jam_url($app_id = null, $redirect_url = null)
+{
+    if (!$app_id) {
         $app_id = env('JAM_APP_ID');
     }
-    if(!$redirect_url){
+    if (!$redirect_url) {
         $redirect_url = env('JAM_REDIRECT_URL');
     }
-    return 'https://core.justauth.me/auth?app_id='.$app_id.'&redirect_url='.$redirect_url;
+    return 'https://core.justauth.me/auth?app_id=' . $app_id . '&redirect_url=' . $redirect_url;
+}
+
+function parseMarkdown($markdown)
+{
+    $parse = new ParsedownExtra();
+    return $parse->text($markdown);
 }
