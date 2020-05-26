@@ -15,7 +15,7 @@ class App extends RemoteResource
         'firstname' => "Prénom",
         'lastname' => "Nom",
         'birthdate' => "Date de naissance",
-        'avatar' => "Avatar"
+        'avatar' => "Photo de profil"
     ];
 
     public function __construct($id = 0, $app_id = 0, $domain = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '')
