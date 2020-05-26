@@ -17,4 +17,9 @@ class HomeController extends Controller
     {
         return view('dash.home');
     }
+
+    public function doc()
+    {
+        return view('dash.doc');
+    }
 }

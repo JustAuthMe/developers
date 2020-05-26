@@ -17,6 +17,7 @@
         rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
 </head>
 
@@ -52,6 +53,13 @@
             <a class="nav-link" href="{{ action('Dash\AppsController@index') }}">
                 <i class="fas fa-fw fa-rocket"></i>
                 <span>Applications</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url(action('Dash\HomeController@doc')) }}">
+                <i class="fas fa-fw fa-folder-open"></i>
+                <span>Documentation</span>
+            </a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
