@@ -57,7 +57,7 @@ class App extends RemoteResource
             $res = json_decode($res->getBody()->getContents(), true);
             $apps = [];
             foreach ($res['client_apps'] as $client_app) {
-                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret'], $res['client_app']['dev']);
+                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret'], $client_app['dev']);
             }
             return $apps;
         }
