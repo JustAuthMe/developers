@@ -46,7 +46,16 @@ class AppsController extends Controller
             'redirect_url' => 'required|url'
         ]);
 
+
         $data = $this->request->all();
+
+        if (!filter_var($data['redirect_url'], FILTER_VALIDATE_URL)) {
+            return redirect()->back()->with('error', "L'URL de redirection est invalide.");
+        }
+
+        if (!preg_match("#^https:\/\/" . addslashes($data['domain']) . "(\/.*)?$#", $data['redirect_url'])) {
+            return redirect()->back()->with('error', "L'URL de redirection doit être en https et doit être sous le même domaine.");
+        }
 
         $data_retrivied = ['!email'];
 
@@ -144,7 +153,7 @@ class AppsController extends Controller
         $res = $app->update($data_updated);
 
         if ($res->getStatusCode() == 409) {
-            return redirect()->back()->with('error', 'Une application portant se nom ou se domaine existe déja.');
+            return redirect()->back()->with('error', 'Une application portant ce nom ou ce domaine existe déja.');
         }
 
         if ($res->getStatusCode() == 200) {

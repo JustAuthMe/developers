@@ -8,8 +8,10 @@ use App\Organization;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -87,11 +89,33 @@ class RegisterController extends Controller
             if ($invitation->used_at) {
                 return redirect(route('login'))->with('error', "Cette invitation a déja été utilisée.");
             }
-            $user->update(['email_verified_at' => new Carbon('now')]);
+            $user->markEmailAsVerified();
             $user->organizations()->sync([$invitation->organization_id => ['role' => Organization::ROLE_USER]]);
             $invitation->update(['used_at' => new Carbon('now')]);
+        } else {
+            $user->sendEmailVerificationNotification();
         }
 
         return $user;
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if($user->email_token != 1){
+            return redirect('dash/login')->with('success', 'Votre compte a bien été créé. Merci de valider votre email avant de vous connecter.');
+        }
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 201)
+            : redirect($this->redirectPath());
     }
 }

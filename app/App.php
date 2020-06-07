@@ -114,19 +114,12 @@ class App extends RemoteResource
 
     public function isAuthorized($user)
     {
-        $organization_ids = [];
-        foreach ($user->organizations()->select('organization_id')->get()->toArray() as $relation) {
-            $organization_ids[] = $relation['organization_id'];
-        }
-
         $relation = DB::table('apps')->where('remote_resource_id', $this->id)->get()->first();
 
         if ($relation->user_id) {
             return $user->id == $relation->user_id;
         } else {
-            foreach ($organization_ids as $organization_id) {
-                return $organization_id == $relation->organization_id;
-            }
+            return in_array($relation->organization_id, $user->organizations()->get()->pluck('id')->toArray());
         }
     }
 }

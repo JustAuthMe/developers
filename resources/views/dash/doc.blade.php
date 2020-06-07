@@ -235,8 +235,7 @@
                 passer par notre application.</p>
             <h1 id="chez-moi-cela-ne-fonctionne-pas-correctement-que-faire-">Chez moi cela ne fonctionne pas
                 correctement, que faire ?</h1>
-            <p>Si vous rencontrez des difficultés à implémenter JustAuthMe, n'hésitez pas à ouvir une Issue Github
-                ici-même, nous nous ferons un plaisir de vous venir en aide !</p>
+            <p>Si vous rencontrez des difficultés à implémenter JustAuthMe, n'hésitez pas à nous contacter : <a href="mailto:support@justauth.me">support@justauth.me</a>.</p>
         </div>
     </div>
 @endsection

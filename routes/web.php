@@ -8,6 +8,14 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'dash'], function () {
     Auth::routes();
+    Route::match(['GET', 'POST'], '/email', 'Auth\VerificationController@sender');
+
+    Route::get('/password', 'Auth\ResetPasswordController@emailForm');
+    Route::post('/password', 'Auth\ResetPasswordController@sendEmail');
+
+    Route::get('/password/validation', 'Auth\ResetPasswordController@resetPasswordForm');
+    Route::post('/password/validation', 'Auth\ResetPasswordController@resetPassword');
+
     Route::get('jam', 'Auth\JamController@auth');
     Route::get('', 'Dash\HomeController@index');
     Route::get('doc', 'Dash\HomeController@doc');

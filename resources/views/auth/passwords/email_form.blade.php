@@ -1,9 +1,9 @@
 @extends('layouts.dash_guest')
 
 @section('content')
-
+    <a href="{{ url('/dash/login') }}" class="btn btn-secondary">Retour</a><br /><br />
     <div class="card">
-        <div class="card-header">Vérifiez votre adresse e-mail</div>
+        <div class="card-header">Réinitialiser votre mot de passe</div>
 
         <div class="card-body">
             <form class="d-inline" method="POST" action="">

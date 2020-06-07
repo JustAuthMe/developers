@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 {{ Form::label('redirect_url', 'URL de redirection') }}
-                {{ Form::text('redirect_url', null, ['class' => 'form-control']) }}
+                {{ Form::text('redirect_url', 'https://', ['class' => 'form-control']) }}
             </div>
 
             <label>Données</label>
