@@ -12,7 +12,7 @@ setup:staging:
   script:
     - rm .git -r
     - composer install --no-dev
-    - cat $STAGING_ENVVARS > ./.env
+    - ENV_PREFIX="STAGING_" php ./deploy/load_envvars.php > ./.env
     - touch build.tar.gz
     - tar --exclude=build.tar.gz -czvf build.tar.gz .
   artifacts:
@@ -22,7 +22,7 @@ setup:staging:
   only:
     - tags
 
-deploy:staging:
+.deploy:staging:
   before_script:
     - chmod u+x ./deploy/*.sh
   stage: deploy_staging
@@ -55,10 +55,12 @@ deploy:staging:
     - tags
 
 .deploy:prod:
+  before_script:
+    - chmod u+x ./deploy/*.sh
   stage: deploy_prod
   environment:
     name: prod
-    url: https://core.justauth.me
+    url: https://dash.justauth.me
   variables:
     DEPLOY_HOSTS: "$PROD_HOSTS"
     ROOT_PATH: "/var/www/$PROD_ROOT_PATH"
