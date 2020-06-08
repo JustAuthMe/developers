@@ -6,6 +6,17 @@ Route::get('/', function () {
     return view('landing/home');
 });
 
+Route::get('/api/version', function () {
+    return [
+        'status' => 'success',
+        'name' => 'JustAuthMe',
+        'version' => [
+            'ref' => env('DEPLOYED_REF'),
+            'hash' => env('DEPLOYED_COMMIT')
+        ]
+    ];
+});
+
 Route::group(['prefix' => 'dash'], function () {
     Auth::routes();
     Route::match(['GET', 'POST'], '/email', 'Auth\VerificationController@sender');
