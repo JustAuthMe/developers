@@ -55,15 +55,6 @@
                 <span>Applications</span></a>
         </li>
 
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url(action('Dash\HomeController@doc')) }}">
-                <i class="fas fa-fw fa-folder-open"></i>
-                <span>Documentation</span>
-            </a>
-        </li>
-
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->

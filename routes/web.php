@@ -2,8 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landing/home');
+Route::get('/', 'LandingController@home');
+Route::get('/documentation', 'LandingController@documentation');
+
+Route::get('/api/version', function () {
+    return [
+        'status' => 'success',
+        'name' => 'JustAuthMe',
+        'version' => [
+            'ref' => env('DEPLOYED_REF'),
+            'hash' => env('DEPLOYED_COMMIT')
+        ]
+    ];
 });
 
 Route::group(['prefix' => 'dash'], function () {
@@ -18,7 +28,6 @@ Route::group(['prefix' => 'dash'], function () {
 
     Route::get('jam', 'Auth\JamController@auth');
     Route::get('', 'Dash\HomeController@index');
-    Route::get('doc', 'Dash\HomeController@doc');
     Route::group(['prefix' => 'organizations'], function () {
         Route::get('', 'Dash\OrganizationsController@index');
         Route::get('create', 'Dash\OrganizationsController@create');
