@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landing/home');
-});
+Route::get('/', 'LandingController@home');
+Route::get('/documentation', 'LandingController@documentation');
 
 Route::group(['prefix' => 'dash'], function () {
     Auth::routes();
@@ -18,7 +17,6 @@ Route::group(['prefix' => 'dash'], function () {
 
     Route::get('jam', 'Auth\JamController@auth');
     Route::get('', 'Dash\HomeController@index');
-    Route::get('doc', 'Dash\HomeController@doc');
     Route::group(['prefix' => 'organizations'], function () {
         Route::get('', 'Dash\OrganizationsController@index');
         Route::get('create', 'Dash\OrganizationsController@create');

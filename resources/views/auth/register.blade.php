@@ -54,6 +54,8 @@
                     </div>
                 </div>
 
+                <p>En vous inscrivant, vous acceptez les <a href="https://justauth.me/p/conditions-generales-dutilisation" target="_blank">conditions générales d'utilisation</a>.</p>
+
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
