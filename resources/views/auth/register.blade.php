@@ -10,7 +10,8 @@
                 @csrf
 
                 @if(isset($invitation))
-                    <input type="hidden" name="invitation_id" value="{{ $invitation->id }}">
+                    <input type="hidden" name="token" value="{{ $invitation->token }}">
+
                 @endif
                 <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">Adresse e-mail</label>

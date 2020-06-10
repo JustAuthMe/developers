@@ -48,13 +48,13 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $invitation_id = $this->request->get('invitation_id');
+        $token = $this->request->get('token');
         $email = $this->request->get('email');
 
-        if ($invitation_id && $email) {
-            $invitation = Invitation::findOrFail($invitation_id);
-            if ($invitation->email != $email) {
-                return abort(400);
+        if ($token && $email) {
+            $invitation = Invitation::where('token', $token)->first();
+            if (!$invitation || $invitation->email != $email) {
+                return redirect(route('login'));
             }
             if ($invitation->used_at) {
                 return redirect(route('login'))->with('error', "Cette invitation a déja été utilisée.");
@@ -75,13 +75,14 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
+
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        if (isset($data['invitation_id'])) {
-            $invitation = Invitation::findOrFail($data['invitation_id']);
+        if (isset($data['token'])) {
+            $invitation = Invitation::where('token', $data['token'])->first();
 
             if ($invitation->email != $data['email']) {
                 return abort(400);

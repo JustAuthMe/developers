@@ -172,7 +172,7 @@
                     <div class="card pricing h-100">
                         <div class="card-body p-5">
                             <div class="text-center">
-                                <div class="badge badge-light badge-pill badge-marketing badge-sm">Enterprise
+                                <div class="badge badge-light badge-pill badge-marketing badge-sm">Entreprise
                                 </div>
                                 <p class="card-text py-10">Si vous avez besoin d'une offre avec plus de 10 000
                                     connexions ou si vous souhaitez intégrer JustAuthMe sur votre intranet,

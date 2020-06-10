@@ -166,11 +166,11 @@ class AppsController extends Controller
     protected function getRetrievedData()
     {
         $data = $this->request->all();
-        $data_retrivied = ['!email'];
+        $data_retrivied = ['email!'];
         foreach (App::$data_available as $data_type => $data_name) {
             if (isset($data['retrieve_' . $data_type])) {
                 if (isset($data['require_' . $data_type])) {
-                    $data_retrivied[] = '!' . $data_type;
+                    $data_retrivied[] = $data_type.'!';
                 } else {
                     $data_retrivied[] = $data_type;
                 }

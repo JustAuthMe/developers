@@ -101,10 +101,10 @@
                         <tr>
                             <td><?= $data_name; ?></td>
                             <td><input type="checkbox"
-                                       name="retrieve_<?= $data; ?>" <?= (in_array($data, $app->data) || in_array('!' . $data, $app->data)) ? 'checked="checked"' : ''; ?>>
+                                       name="retrieve_<?= $data; ?>" <?= (in_array($data, $app->data) || in_array($data.'!' , $app->data)) ? 'checked="checked"' : ''; ?>>
                             </td>
                             <td><input type="checkbox"
-                                       name="require_<?= $data; ?>" <?= (in_array('!' . $data, $app->data)) ? 'checked="checked"' : ''; ?>>
+                                       name="require_<?= $data; ?>" <?= (in_array($data.'!', $app->data)) ? 'checked="checked"' : ''; ?>>
                             </td>
                         </tr>
                         <?php } ?>
