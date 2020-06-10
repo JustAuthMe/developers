@@ -9,6 +9,7 @@ use App\Organization;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrganizationsController extends Controller
 {
@@ -86,9 +87,10 @@ class OrganizationsController extends Controller
             $invitation = Invitation::create([
                 'email' => $data['email'],
                 'organization_id' => $organization->id,
+                'token' => Str::random(64),
                 'role' => Organization::ROLE_USER
             ]);
-            $register_url = url(route('register') . "?invitation_id={$invitation->id}&email={$invitation->email}");
+            $register_url = url(route('register') . "?token={$invitation->token}&email={$invitation->email}");
             Email::express($invitation->email, __('emails.invitation.guest.body', [
                 'name' => $organization->name,
                 'url' => $register_url
