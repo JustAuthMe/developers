@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin.css">
     <style>
         body {
-            font-family: Lato;
+            font-family: Lato, Helvetica, sans-serif;
         }
         .pricing.disabled * {
             color: #555 !important;
