@@ -58,8 +58,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Accueil</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://justauth.me/#engagements"
                                                     target="_blank">À propos de JustAuthMe</a></li>
-                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/#team" target="_blank">Qui
-                                    sommes-nous ?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="mailto:developers@justauth.me">Contactez-nous</a></li>
                         </ul>
                         <a class="btn-light btn rounded-pill px-4 ml-lg-4" href="{{ url('/dash') }}">Dashboard</a>
                     </div>

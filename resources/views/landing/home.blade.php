@@ -10,8 +10,8 @@
                         <p class="page-header-text mb-5">Proposez à vos utilisateurs une solution
                             d'authentification unique, fluide et respectueuse de la vie privée.</p>
                         <a class="btn btn-teal btn-marketing rounded-pill lift lift-sm"
-                           href="{{ url('/dash/register') }}">Intégrer votre site</a><a
-                            class="btn btn-link btn-marketing"
+                           href="{{ url('/dash/register') }}">Intégrer votre site</a>
+                        <a class="btn btn-link btn-marketing"
                             href="{{ url('/documentation') }}">Documentation</a>
                     </div>
                     <div class="col-lg-6 d-none d-lg-block text-right" data-aos="fade-up" data-aos-delay="50">
@@ -64,25 +64,6 @@
             </svg>
         </div>
     </section>
-    <section class="bg-light py-10">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-9 col-lg-6 order-1 order-lg-0" data-aos="fade-right">
-                    <div class="content-skewed content-skewed-right"><img
-                            class="content-skewed-item img-fluid shadow-lg rounded-lg"
-                            src="{{ asset('/img/landing/screenshots/demo-pulseheberg.jpg') }}"/></div>
-                </div>
-                <div class="col-lg-6 order-0 order-lg-1 mb-5 mb-lg-0" data-aos="fade-left">
-                    <div class="mb-5">
-                        <h2>Simplifiez l'inscription sur votre site</h2>
-                        <p class="lead">Les utilisateurs seront plus enclin à créer un compte car JustAuthMe les
-                            débarrasse de toutes les barrières qui séparent leur statut de visiteur de celui de
-                            membre actif de votre communauté.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <hr class="m-0"/>
     <section class="bg-light pt-10">
         <div class="container">
@@ -110,7 +91,7 @@
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">jusqu'à 1000 connexions</span>
+                                        class="text-dark">Jusqu'à 1 000 connexions</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
@@ -137,7 +118,8 @@
                                     class="badge badge-primary-soft badge-pill badge-marketing badge-sm text-primary">
                                     Offre standard
                                 </div>
-                                <div class="pricing-price"><sup>€</sup>29<span class="pricing-price-period">HT /mois</span>
+                                <div class="pricing-price"><sup>€</sup>29<span
+                                        class="pricing-price-period">HT /mois</span>
                                 </div>
                             </div>
                             <ul class="fa-ul pricing-list">
@@ -149,7 +131,7 @@
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">jusqu'à 10 000 connexions</span>
+                                        class="text-dark">Jusqu'à 10 000 connexions</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
@@ -164,7 +146,7 @@
                             </ul>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn btn-primary">Prochainement</a>
+                            <a href="#" class="btn btn-outline-primary">Prochainement</a>
                         </div>
                     </div>
                 </div>
@@ -222,19 +204,6 @@
                                 n’auront qu’à créer un mot de passe via votre interface “Mot de passe perdu”</p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <div class="badge badge-transparent-light badge-pill badge-marketing mb-4">Intégrez votre
-                        site dès maintenant
-                    </div>
-                    <h2 class="text-white">Gagnez des utilisateurs avec JustAuthMe</h2>
-                    <p class="lead text-white-50 mb-5">Les utilisateurs seront plus enclin à créer un compte car
-                        JustAuthMe les débarrasse de toutes les barrières qui séparent leur statut de visiteur
-                        de celui de membre actif de votre communauté.</p>
-                    <a class="btn btn-teal btn-marketing rounded-pill lift lift-sm" href="{{ url('/dash') }}">Intégrer
-                        votre site</a>
                 </div>
             </div>
         </div>
