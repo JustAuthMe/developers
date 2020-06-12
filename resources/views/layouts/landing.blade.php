@@ -25,10 +25,6 @@
             color: #555 !important;
         }
 
-        .pricing.disabled .badge {
-            color: white !important;
-        }
-
         .pricing.disabled::before {
             content: close-quote;
             position: absolute;
@@ -37,6 +33,18 @@
             width: 100%;
             height: 100%;
             background-color: #8888;
+        }
+
+        .navbar-marketing.navbar-dark.navbar-scrolled {
+            background-color: #2A79B0 !important;
+        }
+
+        .bg-dark{
+            background-color: #2A79B0 !important;
+        }
+
+        .text-dark{
+            color: #2A79B0 !important;
         }
     </style>
 </head>
