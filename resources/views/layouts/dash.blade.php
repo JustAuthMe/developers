@@ -55,7 +55,7 @@
                 <span>Applications</span></a>
         </li>
 
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider d-none d-md-block my-0">
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/documentation')  }}" target="_blank">
