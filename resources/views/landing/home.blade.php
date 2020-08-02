@@ -6,11 +6,11 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6" data-aos="fade-up">
-                        <h1 class="page-header-title">Votre nouvelle solution SSO innovante</h1>
+                        <h1 class="page-header-title">Le SSO biométrique sans mot de passe</h1>
                         <p class="page-header-text mb-5">Proposez à vos utilisateurs une solution
-                            d'authentification unique, fluide et respectueuse de la vie privée.</p>
+                            SSO sécurisée, ultra-rapide et respectueuse de la vie privée.</p>
                         <a class="btn btn-teal btn-marketing rounded-pill lift lift-sm"
-                           href="{{ url('/dash/register') }}">Intégrer votre site</a>
+                           href="{{ url('/dash/register') }}">Rendre mon site compatible</a>
                         <a class="btn btn-link btn-marketing"
                             href="{{ url('/documentation') }}">Documentation</a>
                     </div>
@@ -33,27 +33,24 @@
             <div class="row text-center">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="target"></i></div>
-                    <h3>Acquisition</h3>
-                    <p class="mb-0">Les utilisateurs seront plus enclin à créer un compte car JustAuthMe les
-                        débarrasse de toutes les barrières qui séparent leur statut de visiteur de celui de
-                        membre actif de votre communauté.</p>
+                            data-feather="shield"></i></div>
+                    <h3>Sécurité</h3>
+                    <p class="mb-0">Grâce à la biométrie, JustAuthMe permet le plus haut niveau de sécurité jamais
+                        atteint sur un site web.</p>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="shield"></i></div>
-                    <h3>Sécurité</h3>
-                    <p class="mb-0">Les adresses e-mail de nos utilisateurs sont vérifiées en amont et vous
-                        n’avez plus à gérer ce point. De plus, un hacker ne pourrait voler que des informations
-                        inutilisables, car non liées à des mots de passe.</p>
+                            data-feather="user-check"></i></div>
+                    <h3>Authenticité</h3>
+                    <p class="mb-0">Chaque utilisateur de JustAuthMe est certifié authentique. Terminé les e-mail
+                        invalides et les robots.</p>
                 </div>
                 <div class="col-lg-4">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="book-open"></i></div>
-                    <h3>Liberté</h3>
-                    <p class="mb-0">Vous ou vos utilisateurs peuvent à tout moment décider de se passer de notre
-                        solution sans perdre accès à votre site, il n’auront qu’à créer un mot de passe via
-                        votre interface “Mot de passe perdu”.</p>
+                            data-feather="thumbs-up"></i></div>
+                    <h3>Confiance</h3>
+                    <p class="mb-0">Les sites compatibles avec JustAuthMe inspirent la confiance de leurs utilisateurs
+                        en se souciant de leur sécurité.</p>
                 </div>
             </div>
         </div>
@@ -79,19 +76,19 @@
                                 <div class="badge badge-light badge-pill badge-marketing badge-sm">Offre
                                     gratuite
                                 </div>
-                                <div class="pricing-price"><sup>€</sup>0<span
-                                        class="pricing-price-period">/mois</span></div>
+                                <div class="pricing-price">0<sup>€</sup><span
+                                        class="pricing-price-period"> /mois</span></div>
                             </div>
                             <ul class="fa-ul pricing-list">
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Accès à l'API</span>
+                                        class="text-dark">1 site web</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Jusqu'à 1 000 connexions</span>
+                                        class="text-dark">1 000 connexions / mois</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
@@ -99,9 +96,20 @@
                                         class="text-dark">Support par e-mail</span>
                                 </li>
                                 <li class="pricing-list-item">
-                                            <span class="fa-li"><i
-                                                    class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Assistance 5j/7 7h/j</span>
+                                    <span class="fa-li">
+                                        <svg class="svg-inline--fa fa-circle fa-w-16 text-gray-200" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                                        </svg>
+                                    </span>
+                                    Intégration "Same Page"
+                                </li>
+                                <li class="pricing-list-item">
+                                    <span class="fa-li">
+                                        <svg class="svg-inline--fa fa-circle fa-w-16 text-gray-200" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                                        </svg>
+                                    </span>
+                                    Assistance 24/7
                                 </li>
                             </ul>
                         </div>
@@ -118,7 +126,7 @@
                                     class="badge badge-primary-soft badge-pill badge-marketing badge-sm text-primary">
                                     Offre standard
                                 </div>
-                                <div class="pricing-price"><sup>€</sup>29<span
+                                <div class="pricing-price">29<sup>€</sup><span
                                         class="pricing-price-period">HT /mois</span>
                                 </div>
                             </div>
@@ -126,12 +134,12 @@
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Accès à l'API</span>
+                                        class="text-dark">10 sites web</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Jusqu'à 10 000 connexions</span>
+                                        class="text-dark">10 000 connexions / mois</span>
                                 </li>
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
@@ -141,7 +149,15 @@
                                 <li class="pricing-list-item">
                                             <span class="fa-li"><i
                                                     class="far fa-check-circle text-teal"></i></span><span
-                                        class="text-dark">Assistance 7j/7 7h/j</span>
+                                        class="text-dark">Intégration "Same Page"</span>
+                                </li>
+                                <li class="pricing-list-item">
+                                    <span class="fa-li">
+                                        <svg class="svg-inline--fa fa-circle fa-w-16 text-gray-200" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                                        </svg>
+                                    </span>
+                                    Assistance 24/7
                                 </li>
                             </ul>
                         </div>
@@ -150,33 +166,61 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-lg-n10" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card pricing h-100">
+                <div class="col-lg-4 mb-lg-n10" data-aos="fade-up">
+                    <div class="card pricing h-100 disabled">
                         <div class="card-body p-5">
                             <div class="text-center">
-                                <div class="badge badge-light badge-pill badge-marketing badge-sm">Entreprise
+                                <div
+                                    class="badge badge-indigo-soft badge-pill badge-marketing badge-sm text-primary">
+                                    Offre Premium
                                 </div>
-                                <p class="card-text py-10">Si vous avez besoin d'une offre avec plus de 10 000
-                                    connexions ou si vous souhaitez intégrer JustAuthMe sur votre intranet,
-                                    contactez-nous !</p>
-
+                                <div class="pricing-price">59<sup>€</sup><span
+                                        class="pricing-price-period">HT /mois</span>
+                                </div>
                             </div>
+                            <ul class="fa-ul pricing-list">
+                                <li class="pricing-list-item">
+                                            <span class="fa-li"><i
+                                                    class="far fa-check-circle text-teal"></i></span><span
+                                        class="text-dark">Sites web illimités</span>
+                                </li>
+                                <li class="pricing-list-item">
+                                            <span class="fa-li"><i
+                                                    class="far fa-check-circle text-teal"></i></span><span
+                                        class="text-dark">Connexions illimités</span>
+                                </li>
+                                <li class="pricing-list-item">
+                                            <span class="fa-li"><i
+                                                    class="far fa-check-circle text-teal"></i></span><span
+                                        class="text-dark">Support par chat</span>
+                                </li>
+                                <li class="pricing-list-item">
+                                            <span class="fa-li"><i
+                                                    class="far fa-check-circle text-teal"></i></span><span
+                                        class="text-dark">Intégration "Same Page"</span>
+                                </li>
+                                <li class="pricing-list-item">
+                                            <span class="fa-li"><i
+                                                    class="far fa-check-circle text-teal"></i></span><span
+                                        class="text-dark">Assistance 24/7</span>
+                                </li>
+                            </ul>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="mailto:contact@justauth.me" class="btn btn-primary">Contactez-nous</a>
+                            <a href="#" class="btn btn-outline-primary">Prochainement</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="svg-border-rounded text-dark">
+        <div class="svg-border-rounded text-jam">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none"
                  fill="currentColor">
                 <path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
             </svg>
         </div>
     </section>
-    <section class="bg-dark py-10">
+    <section class="bg-jam py-10">
         <div class="container">
             <div class="row my-10">
                 <div class="col-lg-6">
@@ -184,8 +228,7 @@
                         <div class="icon-stack flex-shrink-0 bg-teal text-white"><i class="fas fa-question"></i>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-white">Est-ce que l'offre gratuite deviendra payante dans le futur
-                                ?</h5>
+                            <h5 class="text-white">L'offre gratuite deviendra-t-elle payante dans le futur ?</h5>
                             <p class="text-white-50">Non ! Pas de surprise avec JustAuthMe ! Si vous choisissez
                                 d'intégrer JustAuthMe avec l'offre gratuite, vous bénéficierez de la gratuitié à
                                 vie avec les mêmes garanties !</p>
@@ -197,11 +240,10 @@
                         <div class="icon-stack flex-shrink-0 bg-teal text-white"><i class="fas fa-question"></i>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-white">Puis-je me passer de JustAuthMe sans perdre mes utilisateurs
-                                ?</h5>
-                            <p class="text-white-50">Oui ! Vous ou vos utilisateurs peuvent à tout moment
-                                décider de se passer de notre solution sans perdre accès à votre site, il
-                                n’auront qu’à créer un mot de passe via votre interface “Mot de passe perdu”</p>
+                            <h5 class="text-white">Pourrais-je me passer de JustAuthMe à l'avenir ?</h5>
+                            <p class="text-white-50">Oui ! Vous ou vos utilisateurs pouvez à tout moment
+                                décider de vous passer de notre solution, il suffira à vos utilisateurs de créer un mot
+                                de passe via votre interface “Mot de passe oublié”</p>
                         </div>
                     </div>
                 </div>
