@@ -34,7 +34,7 @@
                         <p>Vous ne voulez plus utiliser de mots de passe ? </p>
                         <a href="{{ get_jam_url() }}" class="btn btn-block btn-primary">Lier votre compte JustAuthMe</a>
                     @else
-                        <p class="text-secondary">Votre compte est lié à JustAuthMe mais vous pouvez redéfinir un mot de passe pour le délier.</p>
+                        <p class="text-secondary">Votre compte est lié à JustAuthMe.</p>
                     @endif
                 </div>
             </div>

@@ -11,7 +11,7 @@ class LandingController extends Controller
     }
 
     public function documentation(){
-        $documentation = (new \Parsedown())->text(file_get_contents('https://raw.githubusercontent.com/JustAuthMe/docs/master/fr_FR.md'));
-        return view('landing.documentation', compact('documentation'));
+       // $documentation = (new \Parsedown())->text(file_get_contents('https://raw.githubusercontent.com/JustAuthMe/docs/master/fr_FR.md'));
+        return view('landing.documentation');
     }
 }

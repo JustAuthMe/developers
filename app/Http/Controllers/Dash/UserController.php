@@ -35,7 +35,6 @@ class UserController extends Controller
         $user = $this->auth->user();
 
         if ($request->get('password')) {
-            $user->jam_id = null;
             $user->password = Hash::make($request->get('password'));
         }
 

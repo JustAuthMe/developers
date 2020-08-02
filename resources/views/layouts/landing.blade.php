@@ -19,14 +19,10 @@
     <link rel="stylesheet" href="https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin.css">
     <style>
         body {
-            font-family: Lato;
+            font-family: Lato, Helvetica, sans-serif;
         }
         .pricing.disabled * {
             color: #555 !important;
-        }
-
-        .pricing.disabled .badge {
-            color: white !important;
         }
 
         .pricing.disabled::before {
@@ -37,6 +33,10 @@
             width: 100%;
             height: 100%;
             background-color: #8888;
+        }
+
+        .navbar-marketing.navbar-dark.navbar-scrolled {
+            background-color: #2A79B0 !important;
         }
     </style>
 </head>
@@ -49,19 +49,18 @@
                 <div class="container">
                     <a class="navbar-brand text-white" href="{{ url('/') }}"><img
                             style="@if(strstr(request()->route()->getActionName(), 'home')) filter: brightness(0) invert(1); @endif height: 1.5rem;"
-                            src="{{ asset('/img/landing/brand-logos/justauthme-txt.svg') }}" alt=""> <sup>Dash</sup></a>
+                            src="{{ asset('/img/landing/brand-logos/justauthme-txt.svg') }}" alt=""> <sup>Developers</sup></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation"><i data-feather="menu"></i></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto mr-lg-5">
                             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Accueil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/#engagements"
-                                                    target="_blank">À propos de JustAuthMe</a></li>
-                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/#team" target="_blank">Qui
-                                    sommes-nous ?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/"
+                                                    target="_blank">Qui sommes-nous ?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="mailto:developers@justauth.me">Contactez-nous</a></li>
                         </ul>
-                        <a class="btn-light btn rounded-pill px-4 ml-lg-4" href="{{ url('/dash') }}">Dashboard</a>
+                        <a class="btn-light btn rounded-pill px-4 ml-lg-4" href="{{ url('/dash') }}">Tableau de bord</a>
                     </div>
                 </div>
             </nav>
@@ -76,16 +75,16 @@
                     <div class="col-lg-3">
                         <div class="footer-brand mb-3"><img src="{{ asset('/img/landing/brand-logos/justauthme-txt.svg') }}" alt="JustAuthMe Logo">
                         </div>
-                        <div class="mb-3">L'identité numérique, sans mot de passe</div>
+                        <div class="mb-3">Le SSO biométrique sans mot de passe</div>
                         <div class="icon-list-social mb-5">
-                            <a class="icon-list-social-link" href="https://www.instagram.com/justauthme/"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a class="icon-list-social-link" href="https://www.facebook.com/justauthme/"><i
-                                    class="fab fa-facebook"></i></a>
-                            <a class="icon-list-social-link" href="https://github.com/JustAuthMe/"><i
-                                    class="fab fa-github"></i></a>
                             <a class="icon-list-social-link" href="https://twitter.com/justauthme"><i
                                     class="fab fa-twitter"></i></a>
+                            <a class="icon-list-social-link" href="https://www.facebook.com/justauthme/"><i
+                                    class="fab fa-facebook"></i></a>
+                            <a class="icon-list-social-link" href="https://www.instagram.com/justauthme/"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="icon-list-social-link" href="https://github.com/JustAuthMe/"><i
+                                    class="fab fa-github"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
