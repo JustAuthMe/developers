@@ -21001,3 +21001,13 @@ section {
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
 }
+
+/* CUSTOM */
+
+.bg-jam{
+    background-color: #2A79B0 !important;
+}
+
+.text-jam{
+    color: #2A79B0 !important;
+}
