@@ -7,7 +7,7 @@
     <meta name="description" content="JustAuthMe pour les développeurs"/>
     <meta name="author" content="JustAuthMe"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'JustAuthMe Developers') }} - Le SSO biométrique sans mot de passe</title>
     <link href="{{ asset('css/landing/styles.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/landing/favicon.png') }}"/>
@@ -18,21 +18,12 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin.css">
     <style>
-        body {
-            font-family: Lato, Helvetica, sans-serif;
-        }
-        .pricing.disabled * {
-            color: #555 !important;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .pricing.disabled::before {
-            content: close-quote;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #8888;
+        body {
+            font-family: Lato, Helvetica, sans-serif;
         }
 
         .navbar-marketing.navbar-dark.navbar-scrolled {
@@ -56,8 +47,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto mr-lg-5">
                             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Accueil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/"
-                                                    target="_blank">Qui sommes-nous ?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://justauth.me/" target="_blank">Qui sommes-nous ?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url('/#pricing')}}">Tarifs</a></li>
                             <li class="nav-item"><a class="nav-link" href="mailto:developers@justauth.me">Contactez-nous</a></li>
                         </ul>
                         <a class="btn-light btn rounded-pill px-4 ml-lg-4" href="{{ url('/dash') }}">Tableau de bord</a>
@@ -65,49 +56,69 @@
                 </div>
             </nav>
             @yield('content')
-            <hr class="m-0"/>
         </main>
     </div>
     <div id="layoutDefault_footer">
-        <footer class="footer pt-10 pb-5 mt-auto bg-light footer-light">
+        <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="footer-brand mb-3"><img src="{{ asset('/img/landing/brand-logos/justauthme-txt.svg') }}" alt="JustAuthMe Logo">
-                        </div>
-                        <div class="mb-3">Le SSO biométrique sans mot de passe</div>
+                        <div class="footer-brand">{{ config('app.name', 'JustAuthMe Developers') }}</div>
+                        <div class="mb-3">Le SSO biométrique sans mot de passe.</div>
                         <div class="icon-list-social mb-5">
-                            <a class="icon-list-social-link" href="https://twitter.com/justauthme"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a class="icon-list-social-link" href="https://www.facebook.com/justauthme/"><i
-                                    class="fab fa-facebook"></i></a>
-                            <a class="icon-list-social-link" href="https://www.instagram.com/justauthme/"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a class="icon-list-social-link" href="https://github.com/JustAuthMe/"><i
-                                    class="fab fa-github"></i></a>
+                            <a class="icon-list-social-link" href="https://twitter.com/justauthme"><i class="fab fa-twitter"></i></a>
+                            <a class="icon-list-social-link" href="https://www.facebook.com/justauthme/"><i class="fab fa-facebook"></i></a>
+                            <a class="icon-list-social-link" href="https://www.instagram.com/justauthme/"><i class="fab fa-instagram"></i></a>
+                            <a class="icon-list-social-link" href="https://www.linkedin.com/company/justauthme/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="text-uppercase-expanded text-xs mb-4">Infos légales</div>
+                            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                                <div class="text-uppercase-expanded text-xs mb-4">Produits</div>
                                 <ul class="list-unstyled mb-0">
-                                    <li class="mb-2"><a href="https://justauth.me/p/mentions-legales">Mention
-                                            légales</a></li>
-                                    <li class="mb-2"><a href="https://justauth.me/p/politique-de-confidentialite">Politique
-                                            de confidentialité</a></li>
-                                    <li><a href="https://justauth.me/p/conditions-generales-dutilisation">Conditions
-                                            générales d'utilisation</a></li>
+                                    <li class="mb-2"><a href="https://justauth.me">Application</a></li>
+                                    <li class="mb-2"><a href="{{ url('/dash') }}">Panel développeurs</a></li>
+                                <!-- <li class="mb-2"><a href="#">Prestashop</a></li>
+                                    <li class="mb-2"><a href="#">Wordpress</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                                <div class="text-uppercase-expanded text-xs mb-4">Ressource</div>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><a href="{{ url('/documentation') }}">Documentation</a></li>
+                                    <li class="mb-2"><a href="https://github.com/justauthme">Github</a></li>
+                                    <li class="mb-2"><a href="https://blog.justauth.me/">Blog</a></li>
+                                    <li class="mb-2"><a href="https://core.justauth.me/rescue">Smartphone perdu</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                                <div class="text-uppercase-expanded text-xs mb-4">Contact</div>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><a href="mailto:press@justauth.me">Presse</a></li>
+                                    <li class="mb-2"><a href="mailto:partnership@justauth.me">Partenariats</a></li>
+                                    <li class="mb-2"><a href="mailto:marketing@justauth.me">Marketing</a></li>
+                                    <li class="mb-2"><a href="mailto:contact@justauth.me">Autre</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                                <div class="text-uppercase-expanded text-xs mb-4">Légal</div>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><a href="https://justauth.me/p/mentions-legales">Mentions légales</a></li>
+                                    <li class="mb-2"><a href="https://justauth.me/p/politique-de-confidentialite">Confidentialité</a></li>
+                                    <li class="mb-2"><a href="https://justauth.me/p/conditions-generales-dutilisation">CGU</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr class="my-5"/>
+                <hr class="my-5" />
                 <div class="row align-items-center">
-                    <div class="col-md-6 small">Tous droits réservés &copy; JustAuthMe 2019 - {{ date('Y') }}</div>
+                    <div class="col-md-6 small">Copyright &copy; JustAuthMe 2019 - {{ date('Y') }} &middot; Tous droits réservés.</div>
                     <div class="col-md-6 text-md-right small">
-                        <a href="https://justauth.me">justauth.me</a>
+                        <a href="{{ url('/?lang=fr') }}" title="Passer en Français"><img src="{{ asset('/img/landing/flags/fr.svg') }}" height="20"></a>
+                        &middot;
+                        <a href="{{ url('/?lang=en') }}" title="Passer en Anglais"><img src="{{ asset('/img/landing/flags/us.svg') }}" height="20"></a>
                     </div>
                 </div>
             </div>
