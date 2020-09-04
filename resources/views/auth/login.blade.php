@@ -3,14 +3,14 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header">Connexion</div>
+        <div class="card-header"><?= __('dash.login');?></div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">Adresse e-mail</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-right"><?= __('dash.email');?></label>
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Mot de passe</label>
+                    <label for="password" class="col-md-4 col-form-label text-md-right"><?= __('dash.password');?></label>
 
                     <div class="col-md-6">
                         <input id="password" type="password"
@@ -47,7 +47,7 @@
                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                             <label class="form-check-label" for="remember">
-                                Se souvenir de moi
+                                <?= __('dash.remember-me');?>
                             </label>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ url('/dash/password') }}">
-                                Mot de passe oublié ?
+                                <?= __('dash.password-lost');?>
                             </a>
                         @endif
                     </div>
@@ -71,8 +71,8 @@
         </div>
     </div>
     <div class="text-center mt-3">
-        <a href="{{ route('register') }}" class="btn btn-secondary">Inscription</a>
-        <a href="{{ get_jam_url() }}" class="btn btn-primary">Connexion avec JustAuthMe</a>
+        <a href="{{ route('register') }}" class="btn btn-secondary"><?= __('dash.register');?></a>
+        <a href="{{ get_jam_url() }}" class="btn btn-primary"><?= __('dash.login-with-jam');?></a>
     </div>
 
 @endsection
