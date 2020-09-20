@@ -7,7 +7,7 @@ return [
     'back' => 'Go back',
     'submit' => 'Submit',
     'home' => [
-        'home' => 'Homme',
+        'home' => 'Home',
         'welcome-message' => 'Welcome on the developers dedicated plateform. Here, you can generate IDs in order to integrate JustAuthMe in your web and mobile apps.',
         'create-an-app' => 'Create an application'
     ],
