@@ -50,11 +50,11 @@ class AppsController extends Controller
         $data = $this->request->all();
 
         if (!filter_var($data['redirect_url'], FILTER_VALIDATE_URL)) {
-            return redirect()->back()->with('error', "L'URL de redirection est invalide.");
+            return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-invalid'));
         }
 
         if (!preg_match("#^https:\/\/" . addslashes($data['domain']) . "(\/.*)?$#", $data['redirect_url'])) {
-            return redirect()->back()->with('error', "L'URL de redirection doit être en https et doit être sous le même domaine.");
+            return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-does-not-match'));
         }
 
         $data_retrivied = ['!email'];
@@ -65,7 +65,7 @@ class AppsController extends Controller
         if ($logo_uploaded) {
             $url = $logo_uploaded;
         } else {
-            return redirect()->back()->with('error', "Une erreur inattendue s’est produite.");
+            return redirect()->back()->with('error', __('dash.alerts.default-error'));
         }
 
         $res = App::create([
@@ -77,32 +77,32 @@ class AppsController extends Controller
         ]);
 
         if ($res->getStatusCode() == 409) {
-            return redirect()->back()->with('error', 'Une application portant se nom ou se domaine existe déja.');
+            return redirect()->back()->with('error', __('dash.apps.alerts.already-exists'));
         }
         if ($res->getStatusCode() == 200) {
             $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
             $app = new App($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo']);
             $app->setOwner($this->auth->user());
-            return redirect(action('Dash\AppsController@index'))->with('success', "L'application a bien été créée.");
+            return redirect(action('Dash\AppsController@index'))->with('success', __('dash.apps.alerts.created'));
         }
 
-        return redirect()->back()->with('error', "Une erreur inattendue s’est produite.");
+        return redirect()->back()->with('error', __('dash.alerts.default-error'));
     }
 
     public function edit($id)
     {
         $app = App::findOrFail($id);
         if (!$app) {
-            return redirect(action('Dash\AppsController@index'))->with('error', "L'application n'existe pas ou plus.");
+            return redirect(action('Dash\AppsController@index'))->with('error', __('dash.apps.alerts.not-found'));
         }
 
         if (!$app->isAuthorized($this->auth->user())) {
-            return redirect(action('Dash\AppsController@index'))->with('error', "Vous n'avez pas l'autorisation.");
+            return redirect(action('Dash\AppsController@index'))->with('error', __('dash.alerts.unauthorized'));
         }
 
         if ($this->request->has('revoke_secret')) {
             $app->revokeSecret();
-            return redirect()->back()->with('success', "La clé secrète a bien été revoquée.");
+            return redirect()->back()->with('success', __('dash.apps.alerts.secret-revoked'));
         }
 
         return view('dash.apps.edit', compact('app'));
@@ -112,11 +112,11 @@ class AppsController extends Controller
     {
         $app = App::findOrFail($id);
         if (!$app) {
-            return redirect(action('Dash\AppsController@index'))->with('error', "L'application n'existe pas ou plus.");
+            return redirect(action('Dash\AppsController@index'))->with('error', __('dash.apps.alerts.not-found'));
         }
 
         if (!$app->isAuthorized($this->auth->user())) {
-            return redirect(action('Dash\AppsController@index'))->with('error', "Vous n'avez pas l'autorisation.");
+            return redirect(action('Dash\AppsController@index'))->with('error', __('dash.alerts.unauthorized'));
         }
 
         $this->request->validate([
@@ -140,7 +140,7 @@ class AppsController extends Controller
             if ($url) {
                 $data_updated['logo'] = $url;
             } else {
-                return redirect()->back()->with('error', "Une erreur inattendue s’est produite.");
+                return redirect()->back()->with('error', __('dash.alerts.default-error'));
             }
         }
 
@@ -153,14 +153,14 @@ class AppsController extends Controller
         $res = $app->update($data_updated);
 
         if ($res->getStatusCode() == 409) {
-            return redirect()->back()->with('error', 'Une application portant ce nom ou ce domaine existe déja.');
+            return redirect()->back()->with('error', __('dash.apps.alerts.already-exists'));
         }
 
         if ($res->getStatusCode() == 200) {
-            return redirect(action('Dash\AppsController@edit', $id))->with('success', "L'application a bien été modifiée.");
+            return redirect(action('Dash\AppsController@edit', $id))->with('success', __('dash.apps.alerts.updated'));
         }
 
-        return redirect()->back()->with('error', "Une erreur inattendue s’est produite.");
+        return redirect()->back()->with('error', __('dash.alerts.default-error'));
     }
 
     protected function getRetrievedData()
@@ -183,18 +183,18 @@ class AppsController extends Controller
     {
         $app = App::findOrFail($id);
         if (!$app) {
-            return redirect()->back()->with('error', "L'application n'existe pas ou plus.");
+            return redirect()->back()->with('error', __('dash.apps.alerts.not-found'));
         }
 
         if (!$app->isAuthorized($this->auth->user())) {
-            return redirect()->back()->with('error', "Vous n'avez pas l'autorisation.");
+            return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
         }
 
         $data = $this->request->all();
 
         if (get_class($app->getOwner()) == Organization::class) {
             if ($this->auth->user()->organizations()->where('organization_id', $app->getOwner()->id)->get()->first()->pivot->role != Organization::ROLE_OWNER) {
-                return redirect()->back()->with('error', "Vous n'avez pas l'autorisation.");
+                return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
             }
         }
 
@@ -202,9 +202,9 @@ class AppsController extends Controller
             $user = User::where('email', $data['email'])->get()->first();
             if ($user) {
                 $app->setOwner($user);
-                return redirect(action('Dash\AppsController@index'))->with('success', 'Le changement de propriétaire a bien été effectué.');
+                return redirect(action('Dash\AppsController@index'))->with('success', __('dash.apps.alerts.owner-change-ok'));
             } else {
-                return redirect()->back()->with('error', "Il n'existe aucun utilisateur avec cette adresse e-mail.");
+                return redirect()->back()->with('error', __('dash.apps.alerts.user-invited-does-not-exist'));
             }
         }
 
@@ -212,10 +212,10 @@ class AppsController extends Controller
             $organization = Organization::find($data['organization_id']);
             if ($organization) {
                 $app->setOwner($organization);
-                return redirect(action('Dash\AppsController@index'))->with('success', 'Le changement de propriétaire a bien été effectué.');
+                return redirect(action('Dash\AppsController@index'))->with('success', __('dash.apps.alerts.owner-change-ok'));
             }
         }
 
-        return redirect()->back()->with('error', "Une erreur inattendue s’est produite.");
+        return redirect()->back()->with('error', __('dash.alerts.default-error'));
     }
 }

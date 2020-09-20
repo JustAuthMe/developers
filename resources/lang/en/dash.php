@@ -1,0 +1,106 @@
+<?php
+return [
+    'are-you-sure' => 'Are you sure?',
+    'see' => 'See',
+    'action' => 'Action',
+    'edit' => 'Edit',
+    'back' => 'Go back',
+    'submit' => 'Submit',
+    'home' => [
+        'home' => 'Home',
+        'welcome-message' => 'Welcome on the developers dedicated plateform. Here, you can generate IDs in order to integrate JustAuthMe in your web and mobile apps.',
+        'create-an-app' => 'Create an application'
+    ],
+    'user' => [
+        'user' => 'User',
+        'profile' => 'Profile',
+        'email' => 'E-mail address',
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'password' => 'Password',
+        'password-confirmation' => 'Password confirmation',
+        'login' => 'Login',
+        'logout' => 'Logout',
+        'register' => 'Register',
+        'terms-register' => 'By signing up, you accept the <a href=":url">terms of service</a>.',
+        'password-lost' => 'Forgot password?',
+        'remember-me' => 'Remember me',
+        'reset-password' => 'Reset your password',
+        'login-with-jam' => 'Login with JustAuthMe',
+        'jam-reason' => 'You do not want to use a password?',
+        'jam-link' => 'Link your JustAuthMe account',
+        'jam-linked' => 'Your account is linked to JustAuthMe.',
+        'alerts' => [
+            'profile-updated' => 'Your profile has been successfully updated.'
+        ]
+    ],
+    'organizations' => [
+        'organization' => 'Organization',
+        'organizations' => 'Organizations',
+        'create-an-organization' => 'Create an organization',
+        'name' => 'Name',
+        'role' => 'Role',
+        'action' => 'Action',
+        'manage' => 'Manage',
+        'invite' => 'Invite',
+        'kick' => 'Kick out',
+        'leave' => 'Leave',
+        'general-settings' => 'General settings',
+        'invite-user' => 'Invite a new user',
+        'owner' => 'Owner',
+        'administrator' => 'Administrator',
+        'user' => 'User',
+        'promote' => 'Promote',
+        'dismiss' => 'Dismiss',
+        'alerts' => [
+            'created' => 'The organization has been successfully created.',
+            'updated' => 'The organization has been successfully updated.',
+            'invited' => 'The user has successfully been invited.',
+            'role-updated' => 'The user role has been successfully updated.',
+            'kicked' => 'The user has been successfully kicked out.',
+            'user_already_member' => 'This user is already a member of this organization.'
+        ]
+    ],
+    'apps' =>[
+        'apps' => 'Applications',
+        'create-an-app' => 'Create an application',
+        'edit-an-app' => 'Update an application',
+        'name' => 'Name',
+        'domain' => 'Domain',
+        'logo' => 'Logo',
+        'redirect-url' => 'Callback URL',
+        'app-id' => 'App ID',
+        'secret-key' => 'Secret key',
+        'dev-mode' => 'Developer mode',
+        'dev-mode-help' => 'The developer mode allows you to authorize callback to any local IP.',
+        'revoke' => 'Revoke',
+        'data' => 'Data',
+        'owner' => 'Owner',
+        'transfer-to-user' => 'Transfer to an user',
+        'transfer-to-organization' => 'Transfer to an organization',
+        'data-label' => 'Data',
+        'desired' => 'Desired',
+        'required' => 'Required',
+        'email' => 'E-mail address',
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'birthdate' => 'Birth date',
+        'avatar' => 'Profile picture',
+        'alerts' => [
+            'redirect-url-invalid' => 'Invalid callback URL.',
+            'redirect-url-does-not-match' => 'The callback URL must start with https and must be under the same domain.',
+            'already-exists' => 'An application with this name or domain already exists.',
+            'not-found' => 'This application does not exists.',
+            'key-revoked' => 'The secret has been successfully revoked.',
+            'user-invited-does-not-exist' => 'There so user with this e-mail address.',
+            'owner-change-ok' => 'The owner change has been successfully made.',
+            'created' => 'The application has been successfully created.',
+            'updated' => 'The application has been successfully updated.'
+        ]
+    ],
+    'documentation' => 'Documentation',
+    'alerts' => [
+        'default-error' => 'An unknown error occured.',
+        'unauthorized' => 'You do not have the authorization.'
+    ]
+];

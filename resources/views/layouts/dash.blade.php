@@ -38,21 +38,15 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/dash') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Accueil</span></a>
+            <a class="nav-link" href="{{ action('Dash\AppsController@index') }}">
+                <i class="fas fa-fw fa-rocket"></i>
+                <span><?= __('dash.apps.apps'); ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ action('Dash\OrganizationsController@index') }}">
                 <i class="fas fa-fw fa-users"></i>
-                <span>Organisations</span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ action('Dash\AppsController@index') }}">
-                <i class="fas fa-fw fa-rocket"></i>
-                <span>Applications</span></a>
+                <span><?= __('dash.organizations.organizations'); ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block my-0">
@@ -60,7 +54,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/documentation')  }}" target="_blank">
                 <i class="fas fa-fw fa-file-alt"></i>
-                <span>Documentation</span></a>
+                <span><?= __('dash.documentation'); ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
@@ -101,13 +95,13 @@
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="{{ action('Dash\UserController@edit') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profil
+                                <?= __('dash.user.profile'); ?>
                             </a>
 
                             <a class="dropdown-item" href="#"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Déconnexion
+                                <?= __('dash.user.logout'); ?>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                   style="display: none;">

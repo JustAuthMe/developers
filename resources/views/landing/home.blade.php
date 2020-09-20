@@ -6,13 +6,12 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6" data-aos="fade-up">
-                        <h1 class="page-header-title">Le SSO biométrique sans mot de passe.</h1>
-                        <p class="page-header-text mb-5">Proposez à vos utilisateurs une solution
-                            SSO sécurisée, ultra-rapide et respectueuse de la vie privée.</p>
+                        <h1 class="page-header-title"><?= __('landing.slogan'); ?></h1>
+                        <p class="page-header-text mb-5"><?= __('landing.description'); ?></p>
                         <a class="btn btn-teal btn-marketing rounded-pill lift lift-sm"
-                           href="{{ url('/dash/register') }}">Rendre mon site compatible</a>
+                           href="{{ url('/dash/register') }}"><?= __('landing.action-button'); ?></a>
                         <a class="btn btn-link btn-marketing"
-                            href="{{ url('/documentation') }}">Documentation</a>
+                           href="{{ url('/documentation') }}"><?= __('landing.documentation'); ?></a>
                     </div>
                     <div class="col-lg-6 d-none d-lg-block text-right" data-aos="fade-up" data-aos-delay="50">
                         <img class="img-fluid"
@@ -33,24 +32,21 @@
             <div class="row text-center">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="shield"></i></div>
-                    <h3>Sécurité</h3>
-                    <p class="mb-0">Grâce à la biométrie, JustAuthMe permet le plus haut niveau de sécurité jamais
-                        atteint sur un site web.</p>
+                                data-feather="shield"></i></div>
+                    <h3><?= __('landing.reasons.security.badge'); ?></h3>
+                    <p class="mb-0"><?= __('landing.reasons.security.description'); ?></p>
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="user-check"></i></div>
-                    <h3>Authenticité</h3>
-                    <p class="mb-0">Chaque utilisateur de JustAuthMe est certifié authentique. Terminé les e-mail
-                        invalides et les robots.</p>
+                                data-feather="user-check"></i></div>
+                    <h3><?= __('landing.reasons.authenticity.badge'); ?></h3>
+                    <p class="mb-0"><?= __('landing.reasons.authenticity.description'); ?></p>
                 </div>
                 <div class="col-lg-4">
                     <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i
-                            data-feather="thumbs-up"></i></div>
-                    <h3>Confiance</h3>
-                    <p class="mb-0">Les sites compatibles avec JustAuthMe inspirent la confiance de leurs utilisateurs
-                        en se souciant de leur sécurité.</p>
+                                data-feather="thumbs-up"></i></div>
+                    <h3><?= __('landing.reasons.trust.badge'); ?></h3>
+                    <p class="mb-0"><?= __('landing.reasons.trust.description'); ?></p>
                 </div>
             </div>
         </div>
@@ -58,30 +54,30 @@
     <section class="bg-light pt-10 pb-10" id="pricing">
         <div class="container">
             <div class="text-center mb-5">
-                <h2>Tarification</h2>
-                <p class="lead">Pas de surprise sur les prix.</p>
+                <h2><?= __('landing.pricing.title'); ?></h2>
+                <p class="lead"><?= __('landing.pricing.subtitle'); ?>.</p>
             </div>
             <div class="row no-gutters align-items-center">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="card pricing">
                         <div class="card-body p-5 d-flex flex-column align-items-center">
-                            <div class="badge badge-primary-soft badge-pill badge-marketing badge-sm text-primary">Offre de lancement</div>
-                            <div class="pricing-price">0<sup>€</sup><span class="pricing-price-period">/mois</span></div>
+                            <div class="badge badge-primary-soft badge-pill badge-marketing badge-sm text-primary"><?= __('landing.pricing.plans.free.badge'); ?></div>
+                            <div class="pricing-price">0<sup>€</sup><span class="pricing-price-period">/<?= __('landing.month'); ?></span></div>
                             <ul class="fa-ul pricing-list">
                                 <li class="pricing-list-item">
-                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark">Sites web illimités</span>
+                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark"><?= __('landing.pricing.plans.free.line1'); ?></span>
                                 </li>
                                 <li class="pricing-list-item">
-                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark">Connexions illimitées</span>
+                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark"><?= __('landing.pricing.plans.free.line2'); ?></span>
                                 </li>
                                 <li class="pricing-list-item">
-                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark">Support par e-mail</span>
+                                    <span class="fa-li"><i class="far fa-check-circle text-teal"></i></span><span class="text-dark"><?= __('landing.pricing.plans.free.line3'); ?></span>
                                 </li>
                             </ul>
                         </div>
                         <div class="card-footer px-5">
-                            <a class="d-flex align-items-center justify-content-between" href="{{ url('/dash/register') }}">Je m'inscris !<i class="fas fa-arrow-right"></i></a>
+                            <a class="d-flex align-items-center justify-content-between" href="{{ url('/dash/register') }}"><?= __('landing.pricing.plans.free.submit'); ?><i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -96,10 +92,8 @@
                         <div class="icon-stack flex-shrink-0 bg-teal text-white"><i class="fas fa-question"></i>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-white">L'offre gratuite deviendra-t-elle payante dans le futur ?</h5>
-                            <p class="text-white-50 text-justify">Non ! Pas de surprise avec JustAuthMe ! Si vous choisissez
-                                d'intégrer JustAuthMe avec l'offre gratuite, vous bénéficierez de la gratuitié à
-                                vie avec les mêmes garanties !</p>
+                            <h5 class="text-white"><?= __('landing.questions.free-offer.question'); ?></h5>
+                            <p class="text-white-50 text-justify"><?= __('landing.questions.free-offer.answer'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -108,10 +102,8 @@
                         <div class="icon-stack flex-shrink-0 bg-teal text-white"><i class="fas fa-question"></i>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-white">Pourrais-je me passer de JustAuthMe à l'avenir ?</h5>
-                            <p class="text-white-50 text-justify">Oui ! Vous ou vos utilisateurs pouvez à tout moment
-                                décider de vous passer de notre solution, il suffira à vos utilisateurs de créer un mot
-                                de passe via votre interface “Mot de passe oublié”</p>
+                            <h5 class="text-white"><?= __('landing.questions.leave-jam.question'); ?></h5>
+                            <p class="text-white-50 text-justify"><?= __('landing.questions.leave-jam.answer'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -122,14 +114,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h4>Prêt à oublier vos mots de passe ?</h4>
-                    <p class="lead mb-5 mb-lg-0">Téléchargez gratuitement notre application dès maintenant !</p>
+                    <h4><?= __('landing.download.title'); ?></h4>
+                    <p class="lead mb-5 mb-lg-0"><?= __('landing.download.subtitle'); ?></p>
                 </div>
                 <div class="col-lg-6 text-lg-right">
-                    <a class="mr-3" href="https://apps.apple.com/fr/app/justauthme/id1506495629"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/apple_fr.png') }}" style="height: 3rem;"/></a>
-                    <a href="https://play.google.com/store/apps/details?id=me.justauth.app.android"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/google_fr.png') }}" style="height: 3rem;"/></a>
+                    <a class="mr-3" href="https://apps.apple.com/fr/app/justauthme/id1506495629"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/apple_'.\Illuminate\Support\Facades\Lang::getLocale().'.png') }}" style="height: 3rem;"/></a>
+                    <a href="https://play.google.com/store/apps/details?id=me.justauth.app.android"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/google_'.\Illuminate\Support\Facades\Lang::getLocale().'.png') }}" style="height: 3rem;"/></a>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+

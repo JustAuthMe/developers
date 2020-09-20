@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('dash.home');
+        return redirect('dash/apps');
     }
 
     public function doc()

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LandingController@home');
+Route::get('/localization/{locale}','LocalizationController@index');
 Route::get('/documentation', 'LandingController@documentation');
 
 Route::get('/api/version', function () {

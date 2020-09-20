@@ -14,7 +14,7 @@
 
                 @endif
                 <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">Adresse e-mail</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-right"><?= __('dash.user.email');?></label>
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Mot de passe</label>
+                    <label for="password" class="col-md-4 col-form-label text-md-right"><?= __('dash.user.password');?></label>
 
                     <div class="col-md-6">
                         <input id="password" type="password"
@@ -47,7 +47,7 @@
 
                 <div class="form-group row">
                     <label for="password-confirm"
-                           class="col-md-4 col-form-label text-md-right">Confirmation du mot de passe</label>
+                           class="col-md-4 col-form-label text-md-right"><?= __('dash.user.password-confirmation');?></label>
 
                     <div class="col-md-6">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
@@ -55,12 +55,12 @@
                     </div>
                 </div>
 
-                <p>En vous inscrivant, vous acceptez les <a href="https://justauth.me/p/conditions-generales-dutilisation" target="_blank">conditions générales d'utilisation</a>.</p>
+                <p><?= __('dash.user.terms-register', ['url' => 'https://justauth.me/p/conditions-generales-dutilisation']);?></p>
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            Inscription
+                            <?= __('dash.user.register');?>
                         </button>
                     </div>
                 </div>
@@ -68,8 +68,8 @@
         </div>
     </div>
     <div class="text-center mt-3">
-        <a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a>
-        <a href="{{ get_jam_url() }}" class="btn btn-primary">Connexion avec JustAuthMe</a>
+        <a href="{{ route('login') }}" class="btn btn-secondary"><?= __('dash.user.login');?></a>
+        <a href="{{ get_jam_url() }}" class="btn btn-primary"><?= __('dash.user.login-with-jam');?></a>
     </div>
 
 @endsection
