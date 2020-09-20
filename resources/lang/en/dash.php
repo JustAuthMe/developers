@@ -77,6 +77,7 @@ return [
         'data' => 'Data',
         'owner' => 'Owner',
         'transfer-to-user' => 'Transfer to an user',
+        'transfer-to-organization' => 'Transfer to an organization',
         'data-label' => 'Data',
         'desired' => 'Desired',
         'required' => 'Required',

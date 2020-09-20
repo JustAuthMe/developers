@@ -28,7 +28,7 @@ Route::group(['prefix' => 'dash'], function () {
     Route::post('/password/validation', 'Auth\ResetPasswordController@resetPassword');
 
     Route::get('jam', 'Auth\JamController@auth');
-    Route::get('', 'Dash\HomeController@index');
+    Route::get('', 'Dash\AppsController@index');
     Route::group(['prefix' => 'organizations'], function () {
         Route::get('', 'Dash\OrganizationsController@index');
         Route::get('create', 'Dash\OrganizationsController@create');

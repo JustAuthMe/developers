@@ -118,8 +118,8 @@
                     <p class="lead mb-5 mb-lg-0"><?= __('landing.download.subtitle'); ?></p>
                 </div>
                 <div class="col-lg-6 text-lg-right">
-                    <a class="mr-3" href="https://apps.apple.com/fr/app/justauthme/id1506495629"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/apple_fr.png') }}" style="height: 3rem;"/></a>
-                    <a href="https://play.google.com/store/apps/details?id=me.justauth.app.android"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/google_fr.png') }}" style="height: 3rem;"/></a>
+                    <a class="mr-3" href="https://apps.apple.com/fr/app/justauthme/id1506495629"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/apple_'.\Illuminate\Support\Facades\Lang::getLocale().'.png') }}" style="height: 3rem;"/></a>
+                    <a href="https://play.google.com/store/apps/details?id=me.justauth.app.android"><img class="mb-2" src="{{ asset('/img/landing/stores_badges/google_'.\Illuminate\Support\Facades\Lang::getLocale().'.png') }}" style="height: 3rem;"/></a>
                 </div>
             </div>
         </div>
