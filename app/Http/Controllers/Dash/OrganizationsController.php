@@ -50,7 +50,7 @@ class OrganizationsController extends Controller
 
         $organization = Organization::create($this->request->only('name'));
         $organization->users()->sync([$this->auth->user()->id => ['role' => Organization::ROLE_OWNER]]);
-        return redirect(action('Dash\OrganizationsController@index'))->with('success', "L'organisation a bien été créée.");
+        return redirect(action('Dash\OrganizationsController@index'))->with('success', __('dash.organizations.alerts.created'));
     }
 
     public function manage($organization)
@@ -64,7 +64,7 @@ class OrganizationsController extends Controller
             'name' => 'required|regex:/^[a-zA-Z0-9\s]+$/|between:2,255'
         ]);
         $organization->update($this->request->only('name'));
-        return redirect()->back()->with('success', "L'organisation a bien été modifiée.");
+        return redirect()->back()->with('success', __('dash.organizations.alerts.updated'));
     }
 
     public function invite($organization)
@@ -78,7 +78,7 @@ class OrganizationsController extends Controller
         $user = User::where('email', $data['email'])->get()->first();
         if ($user) {
             if ($user->organizations->contains($organization->id)) {
-                return redirect()->back()->with('error', "Cet utilisateur est déja membre de l'organisation.");
+                return redirect()->back()->with('error', __('dash.organizations.alerts.user_already_member'));
             }
             $user->organizations()->sync([$organization->id => ['role' => Organization::ROLE_USER]]);
         } else {
@@ -97,7 +97,7 @@ class OrganizationsController extends Controller
             ]), __('emails.invitation.guest.subject'), [__('emails.invitation.guest.action'), $register_url]);
         }
 
-        return redirect()->back()->with('success', "L'utilisateur a bien été invité.");
+        return redirect()->back()->with('success', __('dash.organizations.alerts.invited'));
     }
 
     public function changeMemberRole($organization, $user_id, $role)
@@ -105,7 +105,7 @@ class OrganizationsController extends Controller
         $user = $organization->users->find($user_id);
 
         if ($role != Organization::ROLE_USER && $role != Organization::ROLE_ADMIN) {
-            return redirect()->back()->with('error', "Vous n'avez pas la permission.");
+            return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
         }
 
         if (!$user) {
@@ -114,11 +114,11 @@ class OrganizationsController extends Controller
 
         $user_authenticated = $organization->users->find($this->auth->user()->id);
         if ($user_authenticated && $user_authenticated->pivot->role < Organization::ROLE_ADMIN) {
-            return redirect()->back()->with('error', "Vous n'avez pas la permission.");
+            return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
         }
 
         $organization->users()->updateExistingPivot($user->id, ['role' => $role]);
-        return redirect()->back()->with('success', "Le rôle de l'utilisateur a bien été modifié.");
+        return redirect()->back()->with('success', __('dash.organizations.alerts.role-updated'));
     }
 
     public function removeMember($organization_id, $user_id)
@@ -131,17 +131,17 @@ class OrganizationsController extends Controller
         }
 
         if ($user->pivot->role == Organization::ROLE_OWNER) {
-            return redirect()->back()->with('error', "Vous ne pouvez pas supprimer un propriétaire.");
+            return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
         }
 
         if ($user->id != $this->auth->user()->id) {
             $user_authenticated = $organization->users->find($this->auth->user()->id);
             if ($user_authenticated && $user_authenticated->pivot->role < Organization::ROLE_ADMIN) {
-                return redirect()->back()->with('error', "Vous n'avez pas la permission.");
+                return redirect()->back()->with('error', __('dash.alerts.unauthorized'));
             }
         }
 
         $organization->users()->detach($user->id);
-        return redirect()->back()->with('success', "L'utilisateur a bien été retiré.");
+        return redirect()->back()->with('success', __('dash.organizations.alerts.kicked'));
     }
 }

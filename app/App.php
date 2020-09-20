@@ -12,10 +12,10 @@ class App extends RemoteResource
     protected $id, $app_id, $domain, $name, $redirect_url, $data, $logo, $secret, $dev;
 
     public static $data_available = [
-        'firstname' => "Prénom",
-        'lastname' => "Nom",
-        'birthdate' => "Date de naissance",
-        'avatar' => "Photo de profil"
+        'firstname',
+        'lastname',
+        'birthdate',
+        'avatar'
     ];
 
     public function __construct($id = 0, $app_id = 0, $domain = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '', $dev = false)

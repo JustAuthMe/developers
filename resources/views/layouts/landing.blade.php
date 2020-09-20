@@ -116,9 +116,9 @@
                 <div class="row align-items-center">
                     <div class="col-md-6 small"><?= __('landing.copyright.copyright'); ?> &copy; JustAuthMe 2019 - {{ date('Y') }} &middot; <?= __('landing.copyright.all-rights'); ?>.</div>
                     <div class="col-md-6 text-md-right small">
-                        <a href="{{ url('/?lang=fr') }}" title="Passer en Français"><img src="{{ asset('/img/landing/flags/fr.svg') }}" height="20"></a>
+                        <a href="{{ url('/localization/fr') }}" title="Passer en Français"><img src="{{ asset('/img/landing/flags/fr.svg') }}" height="20"></a>
                         &middot;
-                        <a href="{{ url('/?lang=en') }}" title="Passer en Anglais"><img src="{{ asset('/img/landing/flags/us.svg') }}" height="20"></a>
+                        <a href="{{ url('/localization/en') }}" title="Passer en Anglais"><img src="{{ asset('/img/landing/flags/us.svg') }}" height="20"></a>
                     </div>
                 </div>
             </div>
