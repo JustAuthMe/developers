@@ -13,7 +13,7 @@ return [
     ],
     'user' => [
         'user' => 'User',
-        'profile' => 'Profiles',
+        'profile' => 'Profile',
         'email' => 'E-mail address',
         'firstname' => 'First name',
         'lastname' => 'Last name',
