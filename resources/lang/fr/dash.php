@@ -8,7 +8,7 @@ return [
     'submit' => 'Envoyer',
     'home' => [
         'home' => 'Accueil',
-        'welcome-message' => 'Bienvenue sur la plateforme destinée aux développeurs, vous pouvez ici générer des identifiants pour intégrer JustAuthMe sur vos applications.',
+        'welcome-message' => 'Bienvenue sur la plateforme dédiée aux développeurs, vous pouvez ici générer des identifiants pour intégrer JustAuthMe sur vos applications.',
         'create-an-app' => 'Créer une application'
     ],
     'user' => [
@@ -27,7 +27,7 @@ return [
         'remember-me' => 'Se souvenir de moi',
         'reset-password' => 'Réinitialiser votre mot de passe',
         'login-with-jam' => 'Connexion avec JustAuthMe',
-        'jam-reason' => 'Vous ne voulez plus utiliser de mots de passe ?',
+        'jam-reason' => 'Vous ne voulez plus utiliser de mot de passe ?',
         'jam-link' => 'Lier votre compte JustAuthMe',
         'jam-linked' => 'Votre compte est lié à JustAuthMe.',
         'alerts' => [
@@ -69,7 +69,7 @@ return [
         'domain' => 'Domaine',
         'logo' => 'Logo',
         'redirect-url' => 'URL de redirection',
-        'app-id' => 'App ID',
+        'app-id' => 'ID d\'app',
         'secret-key' => 'Clé secrète',
         'dev-mode' => 'Mode développeur',
         'dev-mode-help' => 'Le mode développeur permet d\'autoriser la redirection sur n\'importe quelle adresse IP
@@ -85,11 +85,11 @@ return [
         'firstname' => 'Prénom',
         'lastname' => 'Nom',
         'birthdate' => 'Date de naissance',
-        'avatar' => 'Avatar',
+        'avatar' => 'Photo de profil',
         'alerts' => [
             'redirect-url-invalid' => 'L\'URL de redirection est invalide.',
             'redirect-url-does-not-match' => 'L\'URL de redirection doit être en https et doit être sous le même domaine.',
-            'already-exists' => 'Une application portant se nom ou se domaine existe déja.',
+            'already-exists' => 'Une application portant ce nom ou ce domaine existe déja.',
             'not-found' => 'L\'application n\'existe pas ou plus.',
             'key-revoked' => 'La clé secrète a bien été revoquée.',
             'user-invited-does-not-exist' => 'Il n\'existe aucun utilisateur avec cette adresse e-mail.',
