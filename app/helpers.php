@@ -3,16 +3,16 @@ function readable_role($role)
 {
     switch ($role) {
         case \App\Organization::ROLE_OWNER:
-            return '<span class="text-danger">Propriétaire</span>';
+            return '<span class="text-danger">'.__('dash.organizations.owner').'</span>';
             break;
         case \App\Organization::ROLE_ADMIN:
-            return '<span class="text-warning">Administrateur</span>';
+            return '<span class="text-warning">'.__('dash.organizations.administrator').'</span>';
             break;
         case \App\Organization::ROLE_USER:
-            return '<span class="text-dark">Utilisateur</span>';
+            return '<span class="text-dark">'.__('dash.organizations.user').'</span>';
             break;
         default:
-            return "Indéfini";
+            return "Unknown";
     }
 }
 

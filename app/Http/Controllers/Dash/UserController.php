@@ -39,6 +39,6 @@ class UserController extends Controller
         }
 
         $user->update($request->only('firstname', 'lastname'));
-        return redirect()->back()->with('success', 'Votre profil a bien été modifié.');
+        return redirect()->back()->with('success', __('dash.user.alerts.profile-updated'));
     }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.dash')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800">Gérer une organisation</h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= __('dash.organizations.manage'); ?></h1>
 
     <div class="row">
         <div class="col-sm-6">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Paramètres généraux</h5>
+                    <h5 class="card-title"><?= __('dash.organizations.general-settings'); ?></h5>
                     @include('dash.organizations.form', ['action' => 'update'])
                 </div>
             </div>
@@ -15,13 +15,13 @@
         <div class="col-sm-6">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Inviter un nouvel utilisateur</h5>
+                    <h5 class="card-title"><?= __('dash.organizations.invite-user'); ?></h5>
                     {{ Form::open(['method' => 'POST', 'url' => action('Dash\OrganizationsController@invite', $organization)]) }}
                     <div class="form-group">
-                        {{ Form::label('email', 'Adresse e-mail') }}
+                        {{ Form::label('email', __('dash.user.email')) }}
                         {{ Form::email('email', null, ['class' => 'form-control']) }}
                     </div>
-                    {{ Form::submit('Inviter', ['class' => 'btn btn-primary']) }}
+                    {{ Form::submit(__('dash.organizations.invite'), ['class' => 'btn btn-primary']) }}
                     {{ Form::close() }}
                 </div>
             </div>
@@ -33,9 +33,9 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Utilisateur</th>
-                    <th>Rôle</th>
-                    <th>Action</th>
+                    <th><?= __('dash.organizations.user'); ?></th>
+                    <th><?= __('dash.organizations.role'); ?></th>
+                    <th><?= __('dash.organizations.action'); ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,17 +48,17 @@
                                 @if($user->pivot->role == \App\Organization::ROLE_USER)
                                     <a href="{{ action('Dash\OrganizationsController@changeMemberRole', ['id' => $organization->id, 'user_id' => $user->id, 'role' => \App\Organization::ROLE_ADMIN]) }}"
                                        class="btn btn-outline-warning btn-sm"
-                                       onclick="return confirm('Souhaitez-vous promouvoir cet utilisateur au rôle d\'administrateur ? ')">Promouvoir</a>
+                                       onclick="return confirm('<?= __('dash.are-you-sure'); ?>')"><?= __('dash.organizations.promote'); ?></a>
                                 @endif
                                 @if($user->pivot->role == \App\Organization::ROLE_ADMIN)
                                     <a href="{{ action('Dash\OrganizationsController@changeMemberRole', ['id' => $organization->id, 'user_id' => $user->id, 'role' => \App\Organization::ROLE_USER]) }}"
                                        class="btn btn-outline-warning btn-sm"
-                                       onclick="return confirm('Souhaitez-vous destituer cet utilisateur au rôle de développeur ? ')">Destituer</a>
+                                       onclick="return confirm('<?= __('dash.are-you-sure'); ?>')"><?= __('dash.organizations.dismiss'); ?></a>
                                 @endif
                                 @if($user->pivot->role < \App\Organization::ROLE_OWNER)
                                     <a href="{{ action('Dash\OrganizationsController@removeMember', ['id' => $organization->id, 'user_id' => $user->id]) }}"
                                        class="btn btn-outline-danger btn-sm"
-                                       onclick="return confirm('Souhaitez-vous retirer cet utilisateur de l\'organisation ?')">Retirer</a>
+                                       onclick="return confirm('<?= __('dash.are-you-sure'); ?>')"><?= __('dash.organizations.kick'); ?></a>
                                 @endif
                             @endif
                         </td>

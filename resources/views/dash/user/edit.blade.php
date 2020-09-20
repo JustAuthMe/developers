@@ -9,32 +9,32 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        {{ Form::label('email', 'Adresse e-mail') }}
+                        {{ Form::label('email', __('dash.user.email')) }}
                         {{ Form::email('email', null, ['class' => 'form-control', 'disabled' => true]) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('firstname', 'Nom') }}
+                        {{ Form::label('firstname', __('dash.user.lastname')) }}
                         {{ Form::text('firstname', null, ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('lastname', 'Prénom') }}
+                        {{ Form::label('lastname', __('dash.user.firstname')) }}
                         {{ Form::text('lastname', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        {{ Form::label('password', 'Mot de passe') }}
+                        {{ Form::label('password', __('dash.user.password')) }}
                         {{ Form::password('password', ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('password_confirmation', 'Confirmation du mot de passe') }}
+                        {{ Form::label('password_confirmation', __('dash.user.password-confirmation')) }}
                         {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
                     </div>
                     @if(!$user->jam_id)
-                        <p>Vous ne voulez plus utiliser de mots de passe ? </p>
-                        <a href="{{ get_jam_url() }}" class="btn btn-block btn-primary">Lier votre compte JustAuthMe</a>
+                        <p><?= __('dash.user.jam-reason'); ?></p>
+                        <a href="{{ get_jam_url() }}" class="btn btn-block btn-primary"><?= __('dash.user.jam-link'); ?></a>
                     @else
-                        <p class="text-secondary">Votre compte est lié à JustAuthMe.</p>
+                        <p class="text-secondary"><?= __('dash.user.jam-linked'); ?></p>
                     @endif
                 </div>
             </div>
