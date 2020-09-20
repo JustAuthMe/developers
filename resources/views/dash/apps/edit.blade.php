@@ -20,7 +20,7 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="button" onclick="hideShowSecret(this)">
-                                    <?= __('dash.apps.see'); ?>
+                                    <?= __('dash.see'); ?>
                                 </button>
                             </div>
                             <input type="text" id="secret" value="********" class="form-control" disabled>
