@@ -15,7 +15,7 @@
                         <input type="text" id="app_id" value="{{ $app->app_id }}" class="form-control" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="secret"><?= __('dash.apps.secret'); ?></label>
+                        <label for="secret"><?= __('dash.apps.secret-key'); ?></label>
                         <input type="hidden" id="real-secret" value="{{ $app->secret }}">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -36,11 +36,11 @@
                     <div class="form-group">
                         <?= __('dash.apps.owner'); ?> :
                         @if(get_class($app->getOwner()) == \App\User::class)
-                            {{ $app->getOwner()->username }} (Utilisateur)
+                            {{ $app->getOwner()->username }} (<?= __('dash.user.user'); ?>)
                         @endif
                         @if(get_class($app->getOwner()) == \App\Organization::class)
                             <a href="{{ url(action('Dash\OrganizationsController@manage',  $app->getOwner())) }}">{{ $app->getOwner()->name }}</a>
-                            (Organisation)
+                            (<?= __('dash.organizations.organization'); ?>)
                         @endif
                         @if(get_class($app->getOwner()) == \App\User::class || auth()->user()->organizations()->where('organization_id', $app->getOwner()->id)->get()->first()->pivot->role == \App\Organization::ROLE_OWNER)
                             <br /><br />

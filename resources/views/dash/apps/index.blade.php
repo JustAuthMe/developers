@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <a href="{{ action('Dash\AppsController@edit', $app->id) }}" class="btn btn-secondary btn-sm"><?= __('dash.edit'); ?></a>
-                            <a href="{{ get_jam_url($app->app_id, $app->redirect_url) }}" target="_blank" class="btn btn-primary btn-sm"><?= __('dash.login'); ?></a>
+                            <a href="{{ get_jam_url($app->app_id, $app->redirect_url) }}" target="_blank" class="btn btn-primary btn-sm"><?= __('dash.user.login'); ?></a>
                         </td>
                     </tr>
                 @endforeach

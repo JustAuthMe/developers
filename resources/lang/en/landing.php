@@ -50,7 +50,7 @@ return [
             'badge' => 'Authenticity',
             'description' => 'Every JustAuthMe user is certified authentic. Say goodbaye to invalid e-mail address and bots.'
         ],
-        'Confidence' => [
+        'trust' => [
             'badge' => 'Trust',
             'description' => 'JustAuthMe compatible websites inspire the trust of their users by caring about their security.'
         ]
