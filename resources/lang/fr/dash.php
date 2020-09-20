@@ -78,6 +78,7 @@ return [
         'data' => 'Données',
         'owner' => 'Propriétaire',
         'transfer-to-user' => 'Transférer à un utilisateur',
+        'transfer-to-organization' => 'Transférer à une organisation',
         'data-label' => 'Donnée',
         'desired' => 'Souhaitée',
         'required' => 'Obligatoire',
