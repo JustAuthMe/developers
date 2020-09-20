@@ -3,7 +3,7 @@
 return [
     'invitation' => [
         'guest' => [
-            'subject' => 'Invitation to jain an organization',
+            'subject' => 'Invitation to join an organization',
             'body' => "Hello,<br /><br />You just had been invited to join the organization :name. In order to complete your membership, please create an account on the developers dedicated platform by following this link :<br /> <a href=':url' target='_blank'>:url</a><br /><br />Hoping to see you soon,<br />The JustAuthMe team.",
             'action' => 'Create an account'
         ]
