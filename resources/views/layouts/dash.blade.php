@@ -38,21 +38,15 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/dash') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span><?= __('dash.home.home'); ?></span></a>
+            <a class="nav-link" href="{{ action('Dash\AppsController@index') }}">
+                <i class="fas fa-fw fa-rocket"></i>
+                <span><?= __('dash.apps.apps'); ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ action('Dash\OrganizationsController@index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span><?= __('dash.organizations.organizations'); ?></span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ action('Dash\AppsController@index') }}">
-                <i class="fas fa-fw fa-rocket"></i>
-                <span><?= __('dash.apps.apps'); ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block my-0">
