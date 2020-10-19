@@ -167,7 +167,7 @@ class AppsController extends Controller
     {
         $data = $this->request->all();
         $data_retrivied = ['email!'];
-        foreach (App::$data_available as $data_type => $data_name) {
+        foreach (App::$data_available as $data_type) {
             if (isset($data['retrieve_' . $data_type])) {
                 if (isset($data['require_' . $data_type])) {
                     $data_retrivied[] = $data_type.'!';
