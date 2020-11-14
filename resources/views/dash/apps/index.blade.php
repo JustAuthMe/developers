@@ -13,7 +13,7 @@
                 <tr>
                     <th col="1"></th>
                     <th><?= __('dash.apps.name'); ?></th>
-                    <th><?= __('dash.apps.domain'); ?></th>
+                    <th><?= __('dash.apps.url'); ?></th>
                     <th><?= __('dash.apps.owner'); ?></th>
                     <th><?= __('dash.action'); ?></th>
                 </tr>
@@ -25,13 +25,13 @@
                         <td>
                             {{ $app->name }}
                         </td>
-                        <td>{{ $app->domain }}</td>
+                        <td><a href="{{ $app->url }}" target="_blank">{{ $app->url }}</a></td>
                         <td>
-                            @if(get_class($app->getOwner()) == \App\User::class) {{ $app->getOwner()->username }} (<?= __('dash.user.user'); ?>) @endif
-                            @if(get_class($app->getOwner()) == \App\Organization::class) <a href="{{ url(action('Dash\OrganizationsController@manage',  $app->getOwner())) }}">{{ $app->getOwner()->name }}</a> (<?= __('dash.organizations.organization'); ?>) @endif
+                            @if(get_class($app->getOwner()) == \App\User::class) <i class="fas fa-user fa-fw"></i> {{ $app->getOwner()->username }} @endif
+                            @if(get_class($app->getOwner()) == \App\Organization::class) <i class="fas fa-building fa-fw"></i> {{ $app->getOwner()->name }} @endif
                         </td>
                         <td>
-                            <a href="{{ action('Dash\AppsController@edit', $app->id) }}" class="btn btn-secondary btn-sm"><?= __('dash.edit'); ?></a>
+                            <a href="{{ action('Dash\AppsController@edit', $app->id) }}" class="btn btn-secondary btn-sm"><?= __('dash.apps.manage'); ?></a>
                             <a href="{{ get_jam_url($app->app_id, $app->redirect_url) }}" target="_blank" class="btn btn-primary btn-sm"><?= __('dash.user.login'); ?></a>
                         </td>
                     </tr>

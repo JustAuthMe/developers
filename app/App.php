@@ -9,23 +9,38 @@ class App extends RemoteResource
     protected $base_uri;
     protected $default_resource = 'client_app';
 
-    protected $id, $app_id, $domain, $name, $redirect_url, $data, $logo, $secret, $dev;
+    protected $id, $app_id, $url, $name, $redirect_url, $data, $logo, $secret, $dev;
 
     public static $data_available = [
-        'firstname',
-        'lastname',
-        'birthdate',
-        'avatar'
+        'identity' => [
+            'lastname',
+            'firstname',
+            'birthdate',
+            'birthlocation',
+            'avatar'
+        ],
+        'address' => [
+            'address_1',
+            'address_2',
+            'postal_code',
+            'city',
+            'state',
+            'country'
+        ],
+        'buisness' => [
+            'job',
+            'company'
+        ]
     ];
 
-    public function __construct($id = 0, $app_id = 0, $domain = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '', $dev = false)
+    public function __construct($id = 0, $app_id = 0, $url = '', $name = '', $redirect_url = '', $data = [], $logo = '', $secret = '', $dev = false)
     {
-        $this->base_uri = env('JAM_CORE');
+        $this->base_uri = env('JAM_CORE_API');
         $this->setAuth(['access_token' => env('JAM_CORE_KEY')]);
 
         $this->id = $id;
         $this->app_id = $app_id;
-        $this->domain = $domain;
+        $this->url = $url;
         $this->name = $name;
         $this->redirect_url = $redirect_url;
         $this->data = $data;
@@ -39,7 +54,7 @@ class App extends RemoteResource
         $res = (new self())->get('client_app/' . $id);
         if ($res->getStatusCode() == 200) {
             $res = json_decode($res->getBody()->getContents(), true);
-            return new self($res['client_app']['id'], $res['client_app']['app_id'], $res['client_app']['domain'], $res['client_app']['name'], $res['client_app']['redirect_url'], $res['client_app']['data'], $res['client_app']['logo'], $res['client_app']['secret'], $res['client_app']['dev']);
+            return new self($res['client_app']['id'], $res['client_app']['app_id'], $res['client_app']['url'], $res['client_app']['name'], $res['client_app']['redirect_url'], $res['client_app']['data'], $res['client_app']['logo'], $res['client_app']['secret'], $res['client_app']['dev']);
         }
         if ($res->getStatusCode() == 404) {
             DB::table('apps')->where('remote_resource_id', $id)->delete();
@@ -57,7 +72,7 @@ class App extends RemoteResource
             $res = json_decode($res->getBody()->getContents(), true);
             $apps = [];
             foreach ($res['client_apps'] as $client_app) {
-                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret'], $client_app['dev']);
+                $apps[] = new self($client_app['id'], $client_app['app_id'], $client_app['url'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo'], $client_app['secret'], $client_app['dev']);
             }
             return $apps;
         }
@@ -72,7 +87,7 @@ class App extends RemoteResource
     public static function create($data)
     {
         return (new self())->post([
-            'domain' => $data['domain'],
+            'url' => $data['url'],
             'name' => $data['name'],
             'redirect_url' => $data['redirect_url'],
             'data' => json_encode($data['data']),

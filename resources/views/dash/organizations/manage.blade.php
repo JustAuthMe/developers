@@ -1,13 +1,13 @@
 @extends('layouts.dash')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800"><?= __('dash.organizations.manage'); ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= __('dash.organizations.organization-management'); ?></h1>
 
     <div class="row">
         <div class="col-sm-6">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"><?= __('dash.organizations.general-settings'); ?></h5>
+                    <h5 class="card-title"><?= __('dash.organizations.informations'); ?></h5>
                     @include('dash.organizations.form', ['action' => 'update'])
                 </div>
             </div>

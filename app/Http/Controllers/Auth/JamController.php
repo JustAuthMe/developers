@@ -32,21 +32,24 @@ class JamController extends Controller
                 }
 
                 if (isset($user_infos->email)) {
-                    if (User::where('email', $user_infos->email)->exists()) {
-                        return redirect(route('login'))->with('error', 'Un utilisateur avec cette adresse e-mail existe déja. Connectez-vous avec votre mot de passe pour lier JustAuthMe.');
+                    $user_with_email = User::where('email', $user_infos->email)->first();
+                    if ($user_with_email) {
+                        $user_with_email->jam_id = $user_infos->jam_id;
+                        $user_with_email->save();
+                    } else {
+                        $user = new User();
+                        $user->email = $user_infos->email;
+                        $user->markEmailAsVerified();
+                        if (isset($user_infos->firstname)) {
+                            $user->firstname = $user_infos->firstname;
+                        }
+                        if (isset($user_infos->lastname)) {
+                            $user->lastname = $user_infos->lastname;
+                        }
+                        $user->jam_id = $user_infos->jam_id;
+                        $user->save();
                     }
 
-                    $user = new User();
-                    $user->email = $user_infos->email;
-                    $user->markEmailAsVerified();
-                    if (isset($user_infos->firstname)) {
-                        $user->firstname = $user_infos->firstname;
-                    }
-                    if (isset($user_infos->lastname)) {
-                        $user->lastname = $user_infos->lastname;
-                    }
-                    $user->jam_id = $user_infos->jam_id;
-                    $user->save();
                     Auth::login($user, true);
                     return redirect(url('/dash'));
                 }

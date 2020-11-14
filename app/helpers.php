@@ -41,7 +41,7 @@ function get_jam_url($app_id = null, $redirect_url = null)
     if (!$redirect_url) {
         $redirect_url = env('JAM_REDIRECT_URL');
     }
-    return 'https://core.justauth.me/auth?app_id=' . $app_id . '&redirect_url=' . $redirect_url;
+    return env('JAM_CORE').'/auth?app_id=' . $app_id . '&redirect_url=' . $redirect_url;
 }
 
 function parseMarkdown($markdown)

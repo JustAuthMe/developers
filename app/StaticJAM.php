@@ -19,6 +19,11 @@ class StaticJAM extends RemoteResource
         $this->url = $url;
     }
 
+    public static function uploadLogo($logo){
+        $dataurl = 'data:image/' . pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($logo->getPathName()));
+        return self::express($logo->getClientOriginalName(), $dataurl);
+    }
+
     public static function express($name, $url)
     {
         return (new StaticJAM($name, $url))->upload();

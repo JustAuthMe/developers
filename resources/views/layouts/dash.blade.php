@@ -131,8 +131,13 @@
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; JustAuthMe 2019 - {{ date('Y') }}</span>
+                <div class="row align-items-center">
+                    <div class="col-md-6 small"><?= __('landing.copyright.copyright'); ?> &copy; JustAuthMe 2019 - {{ date('Y') }} &middot; <?= __('landing.copyright.all-rights'); ?>.</div>
+                    <div class="col-md-6 text-md-right small">
+                        <a href="{{ url('/localization/fr') }}" title="Passer en Français"><img src="{{ asset('/img/landing/flags/fr.svg') }}" height="20"></a>
+                        -
+                        <a href="{{ url('/localization/en') }}" title="Passer en Anglais"><img src="{{ asset('/img/landing/flags/us.svg') }}" height="20"></a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -155,7 +160,10 @@
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-
+<script>
+    let lang_show = '{{ __('dash.show') }}';
+    let lang_hide = '{{ __('dash.hide') }}';
+</script>
 </body>
 
 </html>
