@@ -11,6 +11,12 @@ return [
     'action-button' => 'Rendre votre site compatible',
     'documentation' => 'Documentation',
     'month' => 'mois',
+    'new' => 'Nouveau !',
+    'wordpress' => [
+        'title' => 'Rendez votre site web WordPress compatible',
+        'description' => 'Téléchargez gratuitement notre module (configuration 1-click !) :',
+        'btn' => 'Télécharger'
+    ],
     'footer' => [
         'products' => [
             'label' => 'Produits',

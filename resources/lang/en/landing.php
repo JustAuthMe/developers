@@ -11,6 +11,12 @@ return [
     'action-button' => 'Make your website compatible',
     'documentation' => 'Documentation',
     'month' => 'month',
+    'new' => 'New!',
+    'wordpress' => [
+        'title' => 'Make your WordPress website compatible',
+        'description' => 'Download our free plug-in (1-click configuration!):',
+        'btn' => 'Download now'
+    ],
     'footer' => [
         'products' => [
             'label' => 'Products',
