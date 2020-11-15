@@ -26,6 +26,7 @@
         <div class="card-body">
             <p>
                 <a href="{{ action('Dash\AppsController@create') }}" class="btn btn-primary"><?= __('dash.apps.create-an-app'); ?></a>
+                <a href="{{ url('/dash/integration/setup?type=wordpress') }}" class="btn btn-secondary"><i class="fab fa-wordpress-simple mr-2"></i> <?= __('dash.apps.create-wordpress'); ?></a>
             </p>
             <table class="table">
                 <thead>

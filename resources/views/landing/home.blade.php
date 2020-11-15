@@ -20,13 +20,27 @@
                 </div>
             </div>
         </div>
-        <div class="svg-border-rounded text-white">
+        <div class="svg-border-rounded text-light">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none"
                  fill="currentColor">
                 <path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
             </svg>
         </div>
     </header>
+    <section class="bg-light py-10">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="{{ asset('img/softs/wordpress.png') }}" class="img-fluid" style="width: 150px;" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h2><span class="badge badge-warning">{{ __('landing.new') }}</span> {{ __('landing.wordpress.title') }}</h2>
+                    <p class="lead mb-5 mb-lg-0">{{ __('landing.wordpress.description') }}</p><br />
+                    <a href="{{ get_wordpress_plugin_url() }}" class="btn btn-secondary"><i class="fas fa-download mr-2"></i> {{ __('landing.wordpress.btn') }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="bg-white py-10">
         <div class="container">
             <div class="row text-center">
