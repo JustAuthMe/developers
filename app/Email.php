@@ -13,7 +13,7 @@ class Email extends RemoteResource
 
     public function __construct($to, $subject, $body)
     {
-        $this->base_uri = env('JAM_CORE');
+        $this->base_uri = env('JAM_CORE_API');
         $this->setAuth(['access_token' => env('JAM_CORE_KEY')]);
 
         $this->to = $to;
