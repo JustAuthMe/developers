@@ -5,12 +5,14 @@ $env_vars = [
     "APP_URL" => "string",
 
     "JAM_CORE" => "string",
+    "JAM_CORE_API" => "string",
     "JAM_CORE_KEY" => "string",
     "JAM_STATIC" => "string",
     "JAM_STATIC_KEY" => "string",
     "JAM_REDIRECT_URL" => "string",
     "JAM_SECRET_KEY" => "string",
     "JAM_APP_ID" => "string",
+    "DEFAULT_APP_LOGO" => "string",
 
     "DB_CONNECTION" => "string",
     "DB_HOST" => "string",
