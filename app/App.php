@@ -109,7 +109,7 @@ class App extends RemoteResource
     public function update($data)
     {
         if (isset($data['data'])) {
-            $data['data'] = json_encode($data);
+            $data['data'] = json_encode($data['data']);
         }
         return (new self())->put($data, 'client_app/' . $this->id);
     }
