@@ -8,6 +8,9 @@ return [
     'back' => 'Go back',
     'submit' => 'Submit',
     'select-all' => 'Select all',
+    'contact-support' => 'Contact support',
+    'oops' => 'Oops...',
+    'welcome-message' => 'Welcome to the JustAuthMe developer platform, to get started, create an account (or <a href=":url">log in</a>)!',
     'home' => [
         'home' => 'Home',
         'welcome-message' => 'Welcome on the developers dedicated plateform. Here, you can generate IDs in order to integrate JustAuthMe in your web and mobile apps.',
@@ -114,6 +117,22 @@ return [
             'owner-change-ok' => 'The owner change has been successfully made.',
             'created' => 'The application has been successfully created.',
             'updated' => 'The application has been successfully updated.'
+        ]
+    ],
+    'integration' => [
+        'its-ready' => 'It\'s ready!',
+        'thank-phrase' => 'Thank you for choosing JustAuthMe, your new biometric SSO provider!"',
+        'back-to-website' => 'Back to your website',
+        'application-integration' => 'Application integration',
+        'complete-integration' => 'Complete the integration on your website',
+        'complete-integration-phrase' => 'You wanted to integrate JustAuthMe on your website (<a href=":url" target="_blank">:url</a>) :',
+        'continue-here' => 'Continue here',
+        'ignore' => 'Ignore',
+        'abort' => 'Abort',
+        'finish' => 'Finish the configuration',
+        'alerts' => [
+            'failed-verification' => 'We are unable to connect to your site. Don\'t panic, we\'ll help you :',
+            'already-exists' => 'An application with this URL already exists.',
         ]
     ],
     'documentation' => 'Documentation',

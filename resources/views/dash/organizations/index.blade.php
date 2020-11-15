@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800"><?= __('dash.organizations.organization'); ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= __('dash.organizations.organizations'); ?></h1>
 
     <div class="card">
         <div class="card-body">

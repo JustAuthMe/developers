@@ -17,7 +17,8 @@ class RemoteResource
             'base_uri' => $this->base_uri,
             'timeout' => 2.0,
             'headers' => $this->headers,
-            'http_errors' => false
+            'http_errors' => false,
+            'verify' => false
         ]);
     }
 
@@ -66,6 +67,11 @@ class RemoteResource
         if (isset($options['access_token'])) {
             $this->headers['X-Access-Token'] = $options['access_token'];
         }
+    }
+
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
     }
 
     public function __get($name)

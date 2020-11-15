@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -43,7 +45,29 @@ class LoginController extends Controller
     {
         if ($user->email_token != 1) {
             $this->guard()->logout();
-            return redirect('dash/login')->with('error', 'Merci de confirmer votre adresse e-mail avant de vous connecter. <a href="'.url('dash/email').'">Recevoir un nouveau lien</a>');
+            return redirect('dash/login')->with('error', 'Merci de confirmer votre adresse e-mail avant de vous connecter. <a href="' . url('dash/email') . '">Recevoir un nouveau lien</a>');
         }
+        if (Session::exists('integration')) {
+            return redirect('dash/apps/create-integration');
+        }
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : redirect('/');
     }
 }

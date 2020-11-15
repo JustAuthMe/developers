@@ -9,8 +9,10 @@ use App\Organization;
 use App\Rules\Fqdn;
 use App\StaticJAM;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AppsController extends Controller
 {
@@ -35,6 +37,50 @@ class AppsController extends Controller
     {
         $app = new App();
         return view('dash.apps.create', compact('app'));
+    }
+
+    public function createIntegration()
+    {
+        if (!Session::has('integration') || !isset(Session::get('integration')['url']) || !filter_var(Session::get('integration')['url'], FILTER_VALIDATE_URL)) {
+            return redirect(url('dash/'))->with('error', 'default-error');
+        }
+
+        $wp_request = (new Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false]))->request('GET', Session::get('integration')['url'] . '/wp-content/plugins/justauthme/check.php');
+        if ($wp_request->getStatusCode() != 200) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+        $check = json_decode($wp_request->getBody()->getContents(), true);
+        if (!isset($check['install_type'], $check['name'])) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+
+        $logo_url = env('DEFAULT_APP_LOGO');
+        if (isset($check['icon']) && filter_var($check['icon'], FILTER_VALIDATE_URL)) {
+            $upload = StaticJAM::express(basename($check['icon']), $check['icon']);
+            if ($upload) {
+                $logo_url = $upload;
+            }
+        }
+
+        $res = App::create([
+            'url' => Session::get('integration')['url'],
+            'name' => $check['name'],
+            'redirect_url' => Session::get('integration')['url'].'/wp-content/plugins/justauthme/callback.php',
+            'data' => ['email!', 'firstname', 'lastname'],
+            'logo' => $logo_url
+        ]);
+
+        if ($res->getStatusCode() == 200) {
+            $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
+            $app = new App($client_app);
+            $app->setOwner($this->auth->user());
+            Session::remove('integration');
+            return view('dash.apps.integration', ['status' => 'success', 'app' => $app]);
+        } elseif ($res->getStatusCode() == 409) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'already_exists']);
+        } else {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
     }
 
     public function store(Request $request)
@@ -72,7 +118,7 @@ class AppsController extends Controller
         }
         if ($res->getStatusCode() == 200) {
             $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
-            $app = new App($client_app['id'], $client_app['app_id'], $client_app['url'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo']);
+            $app = new App($client_app);
             $app->setOwner($this->auth->user());
             return redirect(action('Dash\AppsController@index'))->with('success', __('dash.apps.alerts.created'));
         }
@@ -162,7 +208,7 @@ class AppsController extends Controller
     {
         $data = $this->request->all();
         $retrieved_data = ['email!'];
-        if(isset($data['requested_data'])){
+        if (isset($data['requested_data'])) {
             foreach ($data['requested_data'] as $requested_data) {
                 if (in_array($requested_data, call_user_func_array('array_merge', App::$data_available))) {
                     $retrieved_data[] = (isset($data['required_data']) && in_array($requested_data, $data['required_data'])) ? $requested_data . '!' : $requested_data;

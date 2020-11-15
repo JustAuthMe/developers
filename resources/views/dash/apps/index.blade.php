@@ -1,6 +1,25 @@
 @extends('layouts.dash')
 
 @section('content')
+    @if(session()->has('integration') && isset(session()->get('integration')['url']) && !request()->is('dash/apps/create-integration'))
+        <div class="card card-icon mb-4" style="overflow: hidden; display: none;" id="alert-integration">
+            <div class="row no-gutters">
+                <div class="col-auto bg-gradient-primary d-flex align-items-center justify-content-center p-5" style="font-size: 3rem;">
+                    <i class="fas fa-plug text-white-50"></i>
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ __('dash.integration.complete-integration') }}</h5>
+                        <p>{!! __('dash.integration.complete-integration-phrase', ['url' => session()->get('integration')['url']]) !!}</p>
+                        <a href="{{ url('dash/apps/create-integration') }}" class="btn btn-primary btn-sm">{{ __('dash.integration.continue-here') }}</a>
+                        <a href="{{ url('dash/integration/abort') }}" class="btn btn-outline-secondary btn-sm">{{ __('dash.integration.ignore') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php($load_js[] = "$('#alert-integration').show(1000);")
+    @endif
+
     <h1 class="h3 mb-4 text-gray-800">Applications</h1>
 
     <div class="card">
