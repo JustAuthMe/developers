@@ -9,8 +9,11 @@ use App\Organization;
 use App\Rules\Fqdn;
 use App\StaticJAM;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AppsController extends Controller
 {
@@ -37,43 +40,96 @@ class AppsController extends Controller
         return view('dash.apps.create', compact('app'));
     }
 
-    public function store()
+    public function createIntegration()
+    {
+        if (!Session::has('integration') || !isset(Session::get('integration')['url']) || !filter_var(Session::get('integration')['url'], FILTER_VALIDATE_URL)) {
+            return redirect(url('dash/'))->with('error', 'default-error');
+        }
+
+        $url = Session::get('integration')['url'];
+
+        $guzzle = new Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
+
+        $wp_request = $guzzle->request('GET', $url . '/wp-content/plugins/justauthme/check.php');
+        if ($wp_request->getStatusCode() != 200) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+        $check = json_decode($wp_request->getBody()->getContents(), true);
+        if (!isset($check['install_type'], $check['name'])) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+
+        $logo_url = env('DEFAULT_APP_LOGO');
+        if (isset($check['icon']) && filter_var($check['icon'], FILTER_VALIDATE_URL)) {
+            $upload = StaticJAM::express(basename($check['icon']), $check['icon']);
+            if ($upload) {
+                $logo_url = $upload;
+            }
+        }
+
+        // If client app exists and user is authorized
+        $client_app = App::getByUrl($url);
+        if ($client_app && $client_app->isAuthorized(Auth::user())) {
+            $client_app->update(
+                [
+                    'name' => $check['name'],
+                    'logo' => $logo_url
+                ]
+            );
+            Session::remove('integration');
+            return view('dash.apps.integration', ['status' => 'success', 'app' => $client_app]);
+        }
+
+        // If client app does not exist
+        $res = App::create([
+            'url' => $url,
+            'name' => $check['name'],
+            'redirect_url' => $url . '/wp-content/plugins/justauthme/callback.php',
+            'data' => ['email!', 'firstname', 'lastname'],
+            'logo' => $logo_url
+        ]);
+
+        if ($res->getStatusCode() == 200) {
+            $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
+            $app = new App($client_app);
+            $app->setOwner($this->auth->user());
+            Session::remove('integration');
+            return view('dash.apps.integration', ['status' => 'success', 'app' => $app]);
+        } elseif ($res->getStatusCode() == 409) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'already_exists']);
+        } else {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+    }
+
+    public function store(Request $request)
     {
         $this->request->validate([
             'name' => 'required|between:2,255',
-            'logo' => 'image',
-            'domain' => ['required', new Fqdn()],
+            'logo' => 'nullable|image',
+            'url' => 'required|url',
             'redirect_url' => 'required|url'
         ]);
 
 
-        $data = $this->request->all();
-
-        if (!filter_var($data['redirect_url'], FILTER_VALIDATE_URL)) {
-            return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-invalid'));
+        if (!preg_match("#^" . addslashes($request->get('url')) . "(\/.*)?$#", $request->get('redirect_url'))) {
+            return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-same-base-url'));
         }
 
-        if (!preg_match("#^https:\/\/" . addslashes($data['domain']) . "(\/.*)?$#", $data['redirect_url'])) {
-            return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-does-not-match'));
-        }
-
-        $data_retrivied = ['!email'];
-
-        $logo = $data['logo'];
-        $dataurl = 'data:image/' . pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($logo->getPathName()));
-        $logo_uploaded = StaticJAM::express($logo->getClientOriginalName(), $dataurl);
-        if ($logo_uploaded) {
-            $url = $logo_uploaded;
-        } else {
-            return redirect()->back()->with('error', __('dash.alerts.default-error'));
+        $logo_url = env('DEFAULT_APP_LOGO');
+        if ($request->has('logo')) {
+            $upload = StaticJAM::uploadLogo($request->file('logo'));
+            if ($upload) {
+                $logo_url = $upload;
+            }
         }
 
         $res = App::create([
-            'domain' => $data['domain'],
-            'name' => $data['name'],
-            'redirect_url' => $data['redirect_url'],
+            'url' => $request->get('url'),
+            'name' => $request->get('name'),
+            'redirect_url' => $request->get('redirect_url'),
             'data' => $this->getRetrievedData(),
-            'logo' => $url
+            'logo' => $logo_url
         ]);
 
         if ($res->getStatusCode() == 409) {
@@ -81,7 +137,7 @@ class AppsController extends Controller
         }
         if ($res->getStatusCode() == 200) {
             $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
-            $app = new App($client_app['id'], $client_app['app_id'], $client_app['domain'], $client_app['name'], $client_app['redirect_url'], $client_app['data'], $client_app['logo']);
+            $app = new App($client_app);
             $app->setOwner($this->auth->user());
             return redirect(action('Dash\AppsController@index'))->with('success', __('dash.apps.alerts.created'));
         }
@@ -108,7 +164,7 @@ class AppsController extends Controller
         return view('dash.apps.edit', compact('app'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
         $app = App::findOrFail($id);
         if (!$app) {
@@ -125,32 +181,36 @@ class AppsController extends Controller
             'redirect_url' => 'required|url'
         ]);
 
-        $data = $this->request->all();
-
-        if ($data['name'] != $app->name) {
-            $data_updated['name'] = $data['name'];
+        // Get name
+        if ($request->get('name') != $app->name) {
+            $data_to_update['name'] = $request->get('name');
         }
 
-        $data_updated['dev'] = isset($data['dev']) && $data['dev'] == 1;
+        // Get dev mode
+        $data_to_update['dev'] = ($request->has('dev')) == 1;
 
-        if (isset($data['logo'])) {
-            $logo = $data['logo'];
-            $dataurl = 'data:image/' . pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($logo->getPathName()));
-            $url = StaticJAM::express($logo->getClientOriginalName(), $dataurl);
+        // Logo upload
+        if ($request->has('logo')) {
+            $url = StaticJAM::uploadLogo($request->file('logo'));
             if ($url) {
-                $data_updated['logo'] = $url;
+                $data_to_update['logo'] = $url;
             } else {
                 return redirect()->back()->with('error', __('dash.alerts.default-error'));
             }
         }
 
-        if ($data['redirect_url'] != $app->redirect_url) {
-            $data_updated['redirect_url'] = $data['redirect_url'];
+        // Get redirect URL
+        if ($request->get('redirect_url') != $app->redirect_url) {
+            if (!preg_match("#^" . addslashes($app->url) . "(\/.*)?$#", $request->get('redirect_url'))) {
+                return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-same-base-url'));
+            }
+            $data_to_update['redirect_url'] = $request->get('redirect_url');
         }
 
-        $data_updated['data'] = $this->getRetrievedData();
+        // Get desired data
+        $data_to_update['data'] = $this->getRetrievedData();
 
-        $res = $app->update($data_updated);
+        $res = $app->update($data_to_update);
 
         if ($res->getStatusCode() == 409) {
             return redirect()->back()->with('error', __('dash.apps.alerts.already-exists'));
@@ -166,17 +226,15 @@ class AppsController extends Controller
     protected function getRetrievedData()
     {
         $data = $this->request->all();
-        $data_retrivied = ['email!'];
-        foreach (App::$data_available as $data_type) {
-            if (isset($data['retrieve_' . $data_type])) {
-                if (isset($data['require_' . $data_type])) {
-                    $data_retrivied[] = $data_type.'!';
-                } else {
-                    $data_retrivied[] = $data_type;
+        $retrieved_data = ['email!'];
+        if (isset($data['requested_data'])) {
+            foreach ($data['requested_data'] as $requested_data) {
+                if (in_array($requested_data, call_user_func_array('array_merge', App::$data_available))) {
+                    $retrieved_data[] = (isset($data['required_data']) && in_array($requested_data, $data['required_data'])) ? $requested_data . '!' : $requested_data;
                 }
             }
         }
-        return $data_retrivied;
+        return $retrieved_data;
     }
 
     public function changeOwner($id)

@@ -42,6 +42,7 @@ Route::group(['prefix' => 'dash'], function () {
     Route::group(['prefix' => 'apps'], function () {
         Route::get('', 'Dash\AppsController@index');
         Route::get('create', 'Dash\AppsController@create');
+        Route::get('create-integration', 'Dash\AppsController@createIntegration');
         Route::post('', 'Dash\AppsController@store');
         Route::get('{id}/edit', 'Dash\AppsController@edit');
         Route::put('{id}/edit', 'Dash\AppsController@update');
@@ -50,4 +51,7 @@ Route::group(['prefix' => 'dash'], function () {
 
     Route::get('profile', 'Dash\UserController@edit');
     Route::put('profile', 'Dash\UserController@update');
+
+    Route::get('integration', 'Dash\IntegrationController@integrate');
+    Route::get('integration/abort', 'Dash\IntegrationController@abort');
 });
