@@ -73,7 +73,7 @@ return [
         'application-management' => 'Gestion de l\'application',
         'manage' => 'Gérer',
         'name' => 'Nom',
-        'url' => 'URL de base',
+        'url' => 'URL',
         'logo' => 'Logo',
         'redirect-url' => 'URL de redirection',
         'app-id' => 'ID d\'app',
