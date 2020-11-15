@@ -12,6 +12,7 @@ use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AppsController extends Controller
@@ -45,7 +46,11 @@ class AppsController extends Controller
             return redirect(url('dash/'))->with('error', 'default-error');
         }
 
-        $wp_request = (new Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false]))->request('GET', Session::get('integration')['url'] . '/wp-content/plugins/justauthme/check.php');
+        $url = Session::get('integration')['url'];
+
+        $guzzle = new Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
+
+        $wp_request = $guzzle->request('GET', $url . '/wp-content/plugins/justauthme/check.php');
         if ($wp_request->getStatusCode() != 200) {
             return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
         }
@@ -62,10 +67,24 @@ class AppsController extends Controller
             }
         }
 
+        // If client app exists and user is authorized
+        $client_app = App::getByUrl($url);
+        if ($client_app && $client_app->isAuthorized(Auth::user())) {
+            $client_app->update(
+                [
+                    'name' => $check['name'],
+                    'logo' => $logo_url
+                ]
+            );
+            Session::remove('integration');
+            return view('dash.apps.integration', ['status' => 'success', 'app' => $client_app]);
+        }
+
+        // If client app does not exist
         $res = App::create([
-            'url' => Session::get('integration')['url'],
+            'url' => $url,
             'name' => $check['name'],
-            'redirect_url' => Session::get('integration')['url'].'/wp-content/plugins/justauthme/callback.php',
+            'redirect_url' => $url . '/wp-content/plugins/justauthme/callback.php',
             'data' => ['email!', 'firstname', 'lastname'],
             'logo' => $logo_url
         ]);

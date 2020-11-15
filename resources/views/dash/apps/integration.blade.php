@@ -1,5 +1,4 @@
 @extends('layouts.dash')
-@php ($load_js = [asset('js/confetti.min.js'), asset('js/axios.min.js')])
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">{{ __('dash.integration.application-integration') }}</h1>
@@ -15,7 +14,6 @@
                 </div>
                 <p>{{ __('dash.integration.thank-phrase') }}</p>
                 <a href="{{ $app->url }}/wp-content/plugins/justauthme/init.php?app_id={{ $app->app_id }}&secret={{ $app->secret }}" class="btn btn-primary btn-lg">{{ __('dash.integration.finish') }}</a>
-
             @else
                 <h2>{{ __('dash.oops') }}</h2>
                 <div class="w-25 mt-3 mb-3">

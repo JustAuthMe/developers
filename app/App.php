@@ -50,6 +50,16 @@ class App extends RemoteResource
         $this->id = isset($data['id']) ? $data['id'] : 0;
     }
 
+    public static function getByUrl($url)
+    {
+        $res = (new self())->get('client_app?url=' . $url);
+        if ($res->getStatusCode() == 200) {
+            $client_app = json_decode($res->getBody()->getContents(), true)['client_app'];
+            return new self($client_app);
+        }
+        return null;
+    }
+
     public static function findOrFail($id)
     {
         $res = (new self())->get('client_app/' . $id);
@@ -98,7 +108,9 @@ class App extends RemoteResource
 
     public function update($data)
     {
-        $data['data'] = json_encode($data['data']);
+        if (isset($data['data'])) {
+            $data['data'] = json_encode($data);
+        }
         return (new self())->put($data, 'client_app/' . $this->id);
     }
 
@@ -131,11 +143,13 @@ class App extends RemoteResource
     public function isAuthorized($user)
     {
         $relation = DB::table('apps')->where('remote_resource_id', $this->id)->get()->first();
-
-        if ($relation->user_id) {
-            return $user->id == $relation->user_id;
-        } else {
-            return in_array($relation->organization_id, $user->organizations()->get()->pluck('id')->toArray());
+        if ($relation) {
+            if ($relation->user_id) {
+                return $user->id == $relation->user_id;
+            } else {
+                return in_array($relation->organization_id, $user->organizations()->get()->pluck('id')->toArray());
+            }
         }
+        return false;
     }
 }
