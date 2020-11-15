@@ -9,7 +9,7 @@ let hideShowSecret = (btn) => {
         $(":input[id='secret']").val('****************')
         hide = true;
     }
-}
+};
 
 $(window).on('load', () => {
     $(":input[name='url']").keyup(function (e) {

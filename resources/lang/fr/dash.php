@@ -8,6 +8,9 @@ return [
     'back' => 'Retour',
     'submit' => 'Envoyer',
     'select-all' => 'Tout séléctionner',
+    'contact-support' => 'Contactez le support',
+    'oops' => 'Oups...',
+    'welcome-message' => 'Bienvenue sur le tableau de bord des développeurs, pour commencer, créez un compte (ou <a href=":url">connectez-vous</a>) !',
     'home' => [
         'home' => 'Accueil',
         'welcome-message' => 'Bienvenue sur la plateforme dédiée aux développeurs, vous pouvez ici générer des identifiants pour intégrer JustAuthMe sur vos applications.',
@@ -116,6 +119,22 @@ return [
             'owner-change-ok' => 'Le changement de propriétaire a bien été effectué.',
             'created' => 'L\'application a bien été créée.',
             'updated' => 'L\'application a bien été modifiée.'
+        ]
+    ],
+    'integration' => [
+        'its-ready' => 'On y est presque !',
+        'thank-phrase' => 'Vous êtes à un clic de pouvoir utiliser JustAuthMe, votre nouveau fournisseur SSO biométrique !',
+        'back-to-website' => 'Retour à votre site web',
+        'application-integration' => 'Intégration d\'une application',
+        'complete-integration' => 'Terminez l\'intégration de votre site web',
+        'complete-integration-phrase' => 'Vous souhaitiez intégrer JustAuthMe sur votre site web (<a href=":url" target="_blank">:url</a>) :',
+        'continue-here' => 'Continuer',
+        'ignore' => 'Ignorer',
+        'abort' => 'Abandonner',
+        'finish' => 'Terminer la configuration',
+        'alerts' => [
+            'failed-verification' => 'Nous ne parvenons pas à nous connecter à votre site. Contactez-nous :',
+            'already-exists' => 'Ce site web est déjà configuré. Si vous en êtes le propriétaire :',
         ]
     ],
     'documentation' => 'Documentation',
