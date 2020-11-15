@@ -1,5 +1,6 @@
 <?php
 return [
+    'back-to-landing' => 'Back',
     'are-you-sure' => 'Are you sure?',
     'show' => 'Show',
     'hide' => 'Hide',
@@ -31,7 +32,7 @@ return [
         'password-lost' => 'Forgot password?',
         'remember-me' => 'Remember me',
         'reset-password' => 'Reset your password',
-        'login-with-jam' => 'Login with JustAuthMe',
+        'login-with' => 'Login with',
         'jam-reason' => 'You do not want to use a password?',
         'jam-link' => 'Link your JustAuthMe account',
         'jam-linked' => 'Your account is linked to JustAuthMe.',

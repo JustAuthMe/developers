@@ -1,0 +1,154 @@
+/* lato-300 - latin */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.eot'); /* IE9 Compat Modes */
+    src: local('Lato Light'), local('Lato-Light'),
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.woff') format('woff'), /* Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-300.svg#Lato') format('svg'); /* Legacy iOS */
+}
+
+/* lato-regular - latin */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Lato Regular'), local('Lato-Regular'),
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-regular.svg#Lato') format('svg'); /* Legacy iOS */
+}
+
+/* lato-700 - latin */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Lato Bold'), local('Lato-Bold'),
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.woff') format('woff'), /* Modern Browsers */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('https://static.justauth.me/medias/fonts/lato-v16-latin/lato-v16-latin-700.svg#Lato') format('svg'); /* Legacy iOS */
+}
+
+.jam-button div,
+.jam-button span,
+.jam-button img {
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    border: none !important;
+}
+
+.jam-button div {
+    display: block !important;
+}
+
+.jam-button span {
+    display: inline !important;
+}
+
+.jam-button img {
+    display: inline !important;
+}
+
+.jam-button,
+.jam-button:hover,
+.jam-button:active {
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif !important;
+    color: white !important;
+    display: inline-block !important;
+    background: #3498DB !important;
+    padding: 0 15px !important;
+    border-radius: 5px !important;
+    height: 36px !important;
+    text-decoration: none !important;
+    transition: none !important;
+    transition-duration: 0s !important;
+}
+
+.jam-button:active {
+    background-color: #2A79B0 !important;
+    transform: scale(.99) !important;
+}
+
+.jam-button .jam-btn-logo {
+    float: left !important;
+}
+
+.jam-button .jam-btn-logo img {
+    height: 24px !important;
+    margin-top: 6px !important;
+}
+
+.jam-button .jam-btn-text {
+    margin-left: 30px !important;
+    line-height: 36px !important;
+    font-size: 15px !important;
+    font-weight: 300 !important;
+}
+
+.jam-button .jam-btn-text .jam-btn-brand {
+    font-family: "Lato", "Helvetica Neue", Verdana, sans-serif !important;
+}
+
+.jam-button .jam-btn-text .jam-btn-brand .jam-btn-bold {
+    font-weight: 700 !important;
+}
+
+.jam-button .jam-btn-text .jam-btn-brand .jam-btn-thin {
+    font-weight: 300 !important;
+}
+
+/** LARGE **/
+
+.jam-button.large {
+    height: 50px !important;
+    padding: 0 20px !important;
+}
+
+.jam-button.large .jam-btn-logo img {
+    height: 30px !important;
+    margin-top: 10px !important;
+}
+
+.jam-button.large .jam-btn-text {
+    line-height: 50px !important;
+}
+
+/** SMALL **/
+
+.jam-button.small {
+    height: 20px !important;
+    padding: 0 8px !important;
+    border-radius: 3px !important;
+}
+
+.jam-button.small .jam-btn-logo img {
+    height: 16px !important;
+    margin-top: 2px !important;
+}
+
+.jam-button.small .jam-btn-text {
+    font-size: 12px !important;
+    line-height: 20px !important;
+    margin-left: 18px !important;
+}
+
+/** ROUNDED **/
+
+.jam-button.rounded {
+    border-radius: 50vh !important;
+}
