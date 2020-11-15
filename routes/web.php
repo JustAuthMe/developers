@@ -53,5 +53,6 @@ Route::group(['prefix' => 'dash'], function () {
     Route::put('profile', 'Dash\UserController@update');
 
     Route::get('integration', 'Dash\IntegrationController@integrate');
+    Route::get('integration/setup', 'Dash\IntegrationController@setup');
     Route::get('integration/abort', 'Dash\IntegrationController@abort');
 });

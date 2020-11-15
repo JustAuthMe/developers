@@ -13,8 +13,8 @@ return [
     'month' => 'mois',
     'new' => 'Nouveau !',
     'wordpress' => [
-        'title' => 'Rendez votre site web WordPress compatible',
-        'description' => 'Téléchargez gratuitement notre module (configuration 1-click !) :',
+        'title' => 'Rendez votre site WordPress compatible',
+        'description' => 'Téléchargez gratuitement notre module 1-click !',
         'btn' => 'Télécharger'
     ],
     'footer' => [

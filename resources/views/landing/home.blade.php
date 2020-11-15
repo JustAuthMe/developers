@@ -36,7 +36,7 @@
                 <div class="col-md-8">
                     <h2><span class="badge badge-warning">{{ __('landing.new') }}</span> {{ __('landing.wordpress.title') }}</h2>
                     <p class="lead mb-5 mb-lg-0">{{ __('landing.wordpress.description') }}</p><br />
-                    <a href="{{ $wordpress_latest }}" class="btn btn-secondary"><i class="fas fa-download mr-2"></i> {{ __('landing.wordpress.btn') }}</a>
+                    <a href="{{ get_wordpress_plugin_url() }}" class="btn btn-secondary"><i class="fas fa-download mr-2"></i> {{ __('landing.wordpress.btn') }}</a>
                 </div>
             </div>
         </div>

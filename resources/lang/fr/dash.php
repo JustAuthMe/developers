@@ -71,6 +71,7 @@ return [
     'apps' =>[
         'apps' => 'Applications',
         'create-an-app' => 'Créer une application',
+        'create-wordpress' => 'Installer sur WordPress',
         'application-management' => 'Gestion de l\'application',
         'manage' => 'Gérer',
         'name' => 'Nom',

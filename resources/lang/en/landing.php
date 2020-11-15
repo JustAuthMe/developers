@@ -14,7 +14,7 @@ return [
     'new' => 'New!',
     'wordpress' => [
         'title' => 'Make your WordPress website compatible',
-        'description' => 'Download our free plug-in (1-click configuration!):',
+        'description' => 'Download our free 1-click plugin !',
         'btn' => 'Download now'
     ],
     'footer' => [

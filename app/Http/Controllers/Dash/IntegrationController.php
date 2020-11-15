@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use \Illuminate\Support\Facades\View;
 
 class IntegrationController
 {
@@ -30,5 +31,14 @@ class IntegrationController
         }
 
         return redirect(url('dash/apps/create-integration'));
+    }
+
+    public function setup(Request $request){
+        if($request->has('type')){
+            if(View::exists('dash.integrations.'.$request->get('type'))){
+                return view('dash.integrations.'.$request->get('type'));
+            }
+        }
+        return redirect()->back();
     }
 }
