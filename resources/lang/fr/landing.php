@@ -13,7 +13,7 @@ return [
     'month' => 'mois',
     'new' => 'Nouveau !',
     'wordpress' => [
-        'title' => 'Rendez votre site WordPress compatible',
+        'title' => 'Rendez compatible votre site WordPress',
         'description' => 'Téléchargez gratuitement notre module 1-click !',
         'btn' => 'Télécharger'
     ],
