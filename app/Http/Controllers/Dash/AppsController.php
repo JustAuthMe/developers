@@ -111,8 +111,8 @@ class AppsController extends Controller
             'redirect_url' => 'required|url'
         ]);
 
-
-        if (!preg_match("#^" . addslashes($request->get('url')) . "(\/.*)?$#", $request->get('redirect_url'))) {
+        $url = trim($request->get('url'), '/');
+        if (!preg_match("#^" . addslashes($url) . "(\/.*)?#", $request->get('redirect_url'))) {
             return redirect()->back()->with('error', __('dash.apps.alerts.redirect-url-same-base-url'));
         }
 
@@ -125,7 +125,7 @@ class AppsController extends Controller
         }
 
         $res = App::create([
-            'url' => $request->get('url'),
+            'url' => $url,
             'name' => $request->get('name'),
             'redirect_url' => $request->get('redirect_url'),
             'data' => $this->getRetrievedData(),
