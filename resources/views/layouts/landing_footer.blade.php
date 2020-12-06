@@ -6,7 +6,7 @@
                     <div class="footer-brand">{{ config('app.name', 'JustAuthMe Developers') }}</div>
                     <div class="mb-3"><?= __('landing.slogan'); ?></div>
                     <div class="icon-list-social mb-5">
-                        <a class="icon-list-social-link" href="https://twitter.com/justauthme"><i class="fab fa-twitter"></i></a>
+                        <a class="icon-list-social-link" href="https://twitter.com/justauthmefr"><i class="fab fa-twitter"></i></a>
                         <a class="icon-list-social-link" href="https://www.facebook.com/justauthme/"><i class="fab fa-facebook"></i></a>
                         <a class="icon-list-social-link" href="https://www.instagram.com/justauthme/"><i class="fab fa-instagram"></i></a>
                         <a class="icon-list-social-link" href="https://www.linkedin.com/company/justauthme/"><i class="fab fa-linkedin"></i></a>
@@ -19,6 +19,7 @@
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-2"><a href="https://justauth.me"><?= __('landing.footer.products.application'); ?></a></li>
                                 <li class="mb-2"><a href="{{ url('/dash') }}"><?= __('landing.footer.products.developers-panel'); ?></a></li>
+                                <li class="mb-2"><a href="{{ url('/download/wordpress') }}"><?= __('landing.footer.products.wordpress-plugin'); ?></a></li>
                                 <!-- <li class="mb-2"><a href="#">Prestashop</a></li>
                                     <li class="mb-2"><a href="#">Wordpress</a></li> -->
                             </ul>
@@ -27,6 +28,7 @@
                             <div class="text-uppercase-expanded text-xs mb-4"><?= __('landing.footer.resources.label'); ?></div>
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-2"><a href="{{ url('/documentation') }}"><?= __('landing.footer.resources.documentation'); ?></a></li>
+                                <li class="mb-2"><a href="https://justauth.me/press"><?= __('landing.footer.resources.press-kit'); ?></a></li>
                                 <li class="mb-2"><a href="https://github.com/justauthme">Github</a></li>
                                 <li class="mb-2"><a href="https://blog.justauth.me/"><?= __('landing.footer.resources.blog'); ?></a></li>
                                 <li class="mb-2"><a href="https://core.justauth.me/rescue"><?= __('landing.footer.resources.smartphone-lost'); ?></a></li>

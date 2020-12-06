@@ -6,6 +6,8 @@ Route::get('/', 'LandingController@home');
 Route::get('/localization/{locale}','LocalizationController@index');
 Route::get('/documentation', 'LandingController@documentation');
 
+Route::get('/download/wordpress', 'Dash\DownloadController@wordpress');
+
 Route::get('/api/version', function () {
     return [
         'status' => 'success',
