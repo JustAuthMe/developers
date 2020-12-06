@@ -29,19 +29,32 @@
     </header>
     <section class="bg-light py-10">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-4">
-                    <img src="{{ asset('img/softs/wordpress.png') }}" class="img-fluid" style="width: 150px;" alt="">
+            <div class="row justify-content-center ">
+                <div class="col-lg-8">
+                    <div class="row align-items-center mb-5">
+                        <div class="col-md-3 mb-2">
+                            <img src="{{ asset('img/softs/wordpress.png') }}" class="img-fluid" style="width: 150px;" alt="">
+                        </div>
+                        <div class="col-md-9">
+                            <h2><span class="badge badge-warning">{{ __('landing.new') }}</span> {{ __('landing.wordpress.title') }}</h2>
+                            <p class="lead mb-5 mb-lg-0">{{ __('landing.wordpress.description') }}</p><br />
+                            <a href="{{ url('/download/wordpress') }}" class="btn btn-secondary"><i class="fas fa-download mr-2"></i> {{ __('landing.wordpress.btn') }}</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <h2><span class="badge badge-warning">{{ __('landing.new') }}</span> {{ __('landing.wordpress.title') }}</h2>
-                    <p class="lead mb-5 mb-lg-0">{{ __('landing.wordpress.description') }}</p><br />
-                    <a href="{{ get_wordpress_plugin_url() }}" class="btn btn-secondary"><i class="fas fa-download mr-2"></i> {{ __('landing.wordpress.btn') }}</a>
+            </div>
+
+            <div class="row justify-content-center z-1">
+                <div class="col-lg-8 aos-init aos-animate" data-aos="fade-up">
+                    <div class="card lift mb-n15">
+                        <iframe class="video" id="ytvid" src="https://www.youtube-nocookie.com/embed/ec-A0Hxuhk4?rel=0&amp;controls=1&amp;playsinline=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="height: 382px;" frameborder="0">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="bg-white py-10">
+    <section class="bg-white py-10 mt-4">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-4 mb-5 mb-lg-0">

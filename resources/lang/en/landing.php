@@ -22,8 +22,10 @@ return [
             'label' => 'Products',
             'application' => 'Application',
             'developers-panel' => 'Developers panel',
+            'wordpress-plugin' => 'Wordpress plugin'
         ],
         'resources' => [
+            'press-kit' => 'Press kit',
             'label' => 'Resources',
             'documentation' => 'Documentation',
             'blog' => 'Blog',
