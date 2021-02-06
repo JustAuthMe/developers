@@ -100,8 +100,8 @@ class AppsController extends Controller
          */
 
         $logo_url = env('DEFAULT_APP_LOGO');
-        if (isset($check['icon']) && filter_var($check['icon'], FILTER_VALIDATE_URL)) {
-            $upload = StaticJAM::express(basename($check['icon']), $check_data['icon']);
+        if (isset($check_data['icon']) && filter_var($check_data['icon'], FILTER_VALIDATE_URL)) {
+            $upload = StaticJAM::express(basename($check_data['icon']), $check_data['icon']);
             if ($upload) {
                 $logo_url = $upload;
             }
