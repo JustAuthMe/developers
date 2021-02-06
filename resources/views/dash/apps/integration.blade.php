@@ -13,7 +13,19 @@
                          class="img-fluid">
                 </div>
                 <p>{{ __('dash.integration.thank-phrase') }}</p>
-                <a href="{{ $app->url }}/wp-content/plugins/justauthme/init.php?app_id={{ $app->app_id }}&secret={{ $app->secret }}" class="btn btn-primary btn-lg">{{ __('dash.integration.finish') }}</a>
+                <a href="{{ $app->url }}/wp-content/plugins/justauthme/init.php?app_id={{ $app->app_id }}&secret={{ $app->secret }}"
+                   class="btn btn-primary btn-lg">{{ __('dash.integration.finish') }}</a>
+            @elseif($status == 'confirm')
+                <h2>{{ __('dash.integration.confirm') }}</h2>
+                <div class="w-25 mt-3 mb-3">
+                    <img src="{{ asset('img/illustrations/undraw_choice.svg') }}" alt="Confirm"
+                         class="img-fluid">
+                </div>
+                <h5>{{ __('dash.integration.confirm-question', ['platform' => $platform]) }}</h5>
+                <div class="d-flex flex-row">
+                    <a href="?confirm" class="btn btn-lg btn-primary mr-3">{{ __('dash.yes') }}</a>
+                    <a href="{{ url('/dash/integration/abort') }}" class="btn btn-lg btn-outline-secondary">{{ __('dash.cancel') }}</a>
+                </div>
             @else
                 <h2>{{ __('dash.oops') }}</h2>
                 <div class="w-25 mt-3 mb-3">

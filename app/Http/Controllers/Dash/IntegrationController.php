@@ -23,20 +23,23 @@ class IntegrationController
             return redirect(route('login'))->with('error', 'The integration link is incorrect.');
         }
 
-        Session::put('integration', ['url' => $request->get('url'), 'status' => 'login_required']);
+        $url = $request->get('url');
+        $platform = (!$request->has('platform')) ? 'wordpress' : $request->get('platform');
+
+        Session::put('integration', ['url' => $url, 'platform' => $platform, 'status' => 'login_required']);
 
         if (Auth::guest()) {
-
             return redirect(route('register'))->with('success', __('dash.welcome-message', ['url' => url(route('login'))]));
         }
 
         return redirect(url('dash/apps/create-integration'));
     }
 
-    public function setup(Request $request){
-        if($request->has('type')){
-            if(View::exists('dash.integrations.'.$request->get('type'))){
-                return view('dash.integrations.'.$request->get('type'));
+    public function setup(Request $request)
+    {
+        if ($request->has('type')) {
+            if (View::exists('dash.integrations.' . $request->get('type'))) {
+                return view('dash.integrations.' . $request->get('type'));
             }
         }
         return redirect()->back();

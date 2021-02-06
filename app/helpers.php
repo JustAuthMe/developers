@@ -1,7 +1,5 @@
 <?php
 
-use GuzzleHttp\Client;
-
 function readable_role($role)
 {
     switch ($role) {
@@ -55,7 +53,7 @@ function parseMarkdown($markdown)
 
 function get_wordpress_plugin_url()
 {
-    $guzzle = new Client(['timeout' => 1.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
+    $guzzle = new GuzzleHttp\Client(['timeout' => 1.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
     $res = $guzzle->get('https://api.github.com/repos/JustAuthMe/wordpress-plugin/releases/latest');
 
     $wordpress_latest = 'https://github.com/JustAuthMe/wordpress-plugin/releases/';
@@ -66,4 +64,9 @@ function get_wordpress_plugin_url()
         }
     }
     return $wordpress_latest;
+}
+
+function guzzle()
+{
+    return new GuzzleHttp\Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
 }

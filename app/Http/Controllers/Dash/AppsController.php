@@ -46,33 +46,77 @@ class AppsController extends Controller
             return redirect(url('dash/'))->with('error', 'default-error');
         }
 
+        $integrations = [
+            'wordpress' => [
+                'check_endpoint' => '/wp-content/plugins/justauthme/check.php',
+                'callback_endpoint' => '/wp-content/plugins/justauthme/callback.php',
+                'data' => ['email!', 'firstname', 'lastname']
+            ],
+            'woocommerce' => [
+                'check_endpoint' => '/wp-content/plugins/justauthme/check.php',
+                'callback_endpoint' => '/wp-content/plugins/justauthme/callback.php',
+                'data' => ['email!', 'firstname', 'lastname', 'address_1', 'address_2', 'city', 'postal_code', 'country', 'state']
+            ]
+        ];
+
         $url = Session::get('integration')['url'];
+        $platform = Session::get('integration')['platform'];
 
-        $guzzle = new Client(['timeout' => 10.0, 'http_errors' => false, 'verify' => false, 'defaults' => ['exceptions' => false]]);
+        /*
+         * Platform verification
+         */
 
-        $wp_request = $guzzle->request('GET', $url . '/wp-content/plugins/justauthme/check.php');
-        if ($wp_request->getStatusCode() != 200) {
+        // Platform compatibility
+        if (!isset($integrations[$platform])) {
             return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
         }
-        $check = json_decode($wp_request->getBody()->getContents(), true);
-        if (!isset($check['install_type'], $check['name'])) {
+
+        // Checking request
+        $req = guzzle()->get($url . $integrations[$platform]['check_endpoint']);
+        if ($req->getStatusCode() != 200) {
             return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
         }
+
+        // Checking
+        $check_data = json_decode($req->getBody()->getContents(), true);
+        if (!isset($check_data['install_type'], $check_data['name'])) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+
+        // Platform compatibility
+        if (!isset($integrations[$check_data['install_type']])) {
+            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
+        }
+
+        $platform = $check_data['install_type'];
+        $client_app = App::getByUrl($url);
+
+        if ($client_app && $client_app->isAuthorized(Auth::user()) && $client_app->data != $integrations[$platform]['data'] && !isset($_GET['confirm'])) {
+            return view('dash.apps.integration', ['status' => 'confirm', 'type' => 'already_exists', 'platform' => $platform]);
+        }
+
+        /*
+         * App Logo
+         */
 
         $logo_url = env('DEFAULT_APP_LOGO');
         if (isset($check['icon']) && filter_var($check['icon'], FILTER_VALIDATE_URL)) {
-            $upload = StaticJAM::express(basename($check['icon']), $check['icon']);
+            $upload = StaticJAM::express(basename($check['icon']), $check_data['icon']);
             if ($upload) {
                 $logo_url = $upload;
             }
         }
 
+        /*
+         * Client App
+         */
+
         // If client app exists and user is authorized
-        $client_app = App::getByUrl($url);
         if ($client_app && $client_app->isAuthorized(Auth::user())) {
             $client_app->update(
                 [
-                    'name' => $check['name'],
+                    'name' => $check_data['name'],
+                    'data' => $integrations[$platform]['data'],
                     'logo' => $logo_url
                 ]
             );
@@ -83,9 +127,9 @@ class AppsController extends Controller
         // If client app does not exist
         $res = App::create([
             'url' => $url,
-            'name' => $check['name'],
-            'redirect_url' => $url . '/wp-content/plugins/justauthme/callback.php',
-            'data' => ['email!', 'firstname', 'lastname'],
+            'name' => $check_data['name'],
+            'redirect_url' => $url . $integrations[$platform]['callback_endpoint'],
+            'data' => $integrations[$platform]['data'],
             'logo' => $logo_url
         ]);
 
@@ -97,9 +141,9 @@ class AppsController extends Controller
             return view('dash.apps.integration', ['status' => 'success', 'app' => $app]);
         } elseif ($res->getStatusCode() == 409) {
             return view('dash.apps.integration', ['status' => 'error', 'type' => 'already_exists']);
-        } else {
-            return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
         }
+
+        return view('dash.apps.integration', ['status' => 'error', 'type' => 'failed_verification']);
     }
 
     public function store(Request $request)
