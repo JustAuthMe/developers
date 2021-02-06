@@ -7,8 +7,10 @@
         <div class="card-body">
             <div class="row align-items-center mb-5">
                 <div class="col-md-4 text-center">
-                    <img src="https://developers.justauth.me/img/softs/wordpress.png" class="img-fluid"
-                         style="width: 150px;" alt="">
+                    <img src="{{ asset('img/softs/wordpress.png') }}" class="img-fluid"
+                         style="width: 130px;" alt="">
+                    <img src="{{ asset('img/softs/woocommerce.png') }}" class="img-fluid ml-2"
+                         style="width: 130px;" alt="">
                 </div>
                 <div class="col-md-8">
                     <h2>{{ __('landing.wordpress.title') }}</h2>

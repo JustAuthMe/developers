@@ -1,5 +1,7 @@
 <?php
 return [
+    'yes' => 'Yes',
+    'cancel' => 'Cancel',
     'back-to-landing' => 'Back',
     'are-you-sure' => 'Are you sure?',
     'show' => 'Show',
@@ -71,7 +73,7 @@ return [
     'apps' =>[
         'apps' => 'Applications',
         'create-an-app' => 'Create an application',
-        'create-wordpress' => 'Install on WordPress',
+        'create-wordpress' => 'Install on WordPress or WooCommerce',
         'application-management' => 'Application management',
         'manage' => 'Manage',
         'name' => 'Name',
@@ -132,6 +134,8 @@ return [
         'ignore' => 'Ignore',
         'abort' => 'Abort',
         'finish' => 'Finish the configuration',
+        'confirm' => 'Your website is already configured',
+        'confirm-question' => 'Do you want to adapt it for use with :platform?',
         'alerts' => [
             'failed-verification' => 'We are unable to connect to your site. Don\'t panic, we\'ll help you :',
             'already-exists' => 'An application with this URL already exists.',
